@@ -149,3 +149,6 @@ void EfectorFinal::setEstado(bool _estado){
  int EfectorFinal::getAuxiliar(int i){
      return this->auxiliar[i];
  }
+ 
+ EfectorFinal::~EfectorFinal(){
+ }

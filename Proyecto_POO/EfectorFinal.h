@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
+/*
  * File:   EfectorFinal.h
  * Author: emiliano
  *
@@ -14,13 +14,13 @@
 #ifndef EFECTORFINAL_H
 #define EFECTORFINAL_H
 
+#include "Conjunto.h"
 #include <vector>
 #include <string>
-
 using namespace std;
 
 
-class EfectorFinal {
+class EfectorFinal : public Conjunto{
 private:
     bool estado;
     int velocidad;
@@ -29,32 +29,24 @@ private:
     std::vector<int> auxiliar;
 public:
     EfectorFinal(bool _estado);
-    ~EfectorFinal();
+    virtual ~EfectorFinal();
    // void informarCiclos();
-    
     void pintar(int i);
     void rotar(int i);
     void soltar(int i);
     void cambiarVelocidad(int i);
-    void sostener(int i); 
-    void agregar(int _accion, int _ciclos);  
+    void sostener(int i);
+    void agregar(int _accion, int _ciclos);
     void agregarTarea(std::string _tarea);
-    void agregarCiclo(int _ciclos); 
-    int getCiclos(int i); 
+    void agregarCiclo(int _ciclos);
     void agregarAuxiliar(int _accion);
-    int getAuxiliar(int i);
-
-   
-
-    bool isEstado();
-
-    void setEstado(bool _estado);
-
-    int getVelocidad();
-
     void setVelocidad(int _velocidad);
     void iniciar(int i);
-
+    void setEstado(bool _estado);
+    int getAuxiliar(int i);
+    int getCiclos(int i);
+    int getVelocidad();
+    bool isEstado();
     std::string getAccion(int i);
 };
 

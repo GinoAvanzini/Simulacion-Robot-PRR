@@ -45,6 +45,6 @@ private:
     string descripcion;
     string tipo;
 
-}
+};
 
 #endif /* CONJUNTO_H */

@@ -23,6 +23,7 @@ public:
     BaseRobot(int ID);
     BaseRobot(const BaseRobot& orig);
     virtual ~BaseRobot();
+    void inicio();
 private:
     bool estado;
     string ip_data;

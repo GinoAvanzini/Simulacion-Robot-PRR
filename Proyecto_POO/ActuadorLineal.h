@@ -20,7 +20,7 @@ using std::string;
 
 class ActuadorLineal : public Conjunto{
 public:
-    ActuadorLineal();
+    ActuadorLineal(int ID);
     ActuadorLineal(const ActuadorLineal& orig);
     virtual ~ActuadorLineal();
 

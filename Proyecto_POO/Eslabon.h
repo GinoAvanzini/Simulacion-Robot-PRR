@@ -19,7 +19,7 @@
 class Eslabon : public Conjunto{
 public:
     Eslabon(int ID); //eslabones brazo
-    Eslabon(int long, int ID); //Eslabon columna
+    Eslabon(int longitud, int ID); //Eslabon columna
     Eslabon(const Eslabon& orig);
     virtual ~Eslabon();
 

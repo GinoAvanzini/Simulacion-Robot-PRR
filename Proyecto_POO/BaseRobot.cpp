@@ -13,6 +13,10 @@
 
 #include "BaseRobot.h"
 #include "Conjunto.h"
+#include "ActuadorLineal.h"
+#include "Articulacion.h"
+#include "Eslabon.h"
+#include "EfectorFinal.h"
 
 void BaseRobot::inicio(){
   Eslabon *eslabon1;
@@ -40,14 +44,16 @@ void BaseRobot::inicio(){
 	bool estado = 0;
 	int ciclos = 0;
 	bool flag1 = true;
-  bool flag2 = true;
+  bool flag2;
   int cont = 0;
   int encendido = 0;
   int i = 0, velocidad = 2;
 
 
         while(flag1 == true){
+            
             cout << "Ingrese:\n"
+                << "0 para apagar\n"
                 << "1 para mostrar identificacion\n"
                 << "2 para mostrar descripcion\n"
                 << "3 para mostrar peso\n"
@@ -105,16 +111,17 @@ void BaseRobot::inicio(){
                         else{
                             flag2 = false;
                         }
+                        
 
                     }
-                    for(i = 0; i < cont; i++){
-                        efector1->iniciar(i);
-                    }
+                    flag2=true;
                     break;
                 }
                 case 5:
                 {
-                  inicio();
+                  for(i = 0; i < cont; i++){
+                        efector1->iniciar(i);
+                    }
                   break;
                 }
                 default:

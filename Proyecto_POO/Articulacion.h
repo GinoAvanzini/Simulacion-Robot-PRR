@@ -20,7 +20,7 @@ using std::string;
 
 class Articulacion : public Conjunto{
 public:
-    Articulacion();
+    Articulacion(int ID);
     Articulacion(const Articulacion& orig);
     virtual ~Articulacion();
 

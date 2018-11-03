@@ -23,8 +23,8 @@ Eslabon::Eslabon(int ID){ //eslabon brazo
 
 }
 
-Eslabon::Eslabon(int long, int ID) { //eslabon columna
-    this->longitud = long;
+Eslabon::Eslabon(int longitud, int ID) { //eslabon columna
+    this->longitud = longitud;
     this->setTipo("Eslabon columna");
     this->setId(ID);
     this->setPeso(4000);

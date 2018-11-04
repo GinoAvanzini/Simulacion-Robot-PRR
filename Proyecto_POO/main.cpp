@@ -26,7 +26,8 @@ int main(int argc, char** argv) {
     cin >> i;
     if (i == 1){
         BaseRobot *robot1;
-        robot1= new BaseRobot(0);    }
+        robot1= new BaseRobot(0, true, "168.10.14.77");
+    }
     else {
         return 0;
     }

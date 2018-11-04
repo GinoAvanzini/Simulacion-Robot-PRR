@@ -15,7 +15,6 @@
 #define CONJUNTO_H
 
 #include <iostream>
-
 #include <string>
 using std::string;
 

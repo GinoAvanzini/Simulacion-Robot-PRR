@@ -9,9 +9,9 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
- 
+
 EfectorFinal::EfectorFinal(bool _estado){
-    this->setEstado(_estado);  
+    this->setEstado(_estado);
 }
 
 void EfectorFinal::iniciar(int i){
@@ -20,7 +20,7 @@ void EfectorFinal::iniciar(int i){
                 this->pintar(this->getCiclos(i));
             }
             break;
-            case 2:{   
+            case 2:{
                 this->sostener(this->getCiclos(i));
             }
             break;
@@ -37,15 +37,15 @@ void EfectorFinal::iniciar(int i){
             }
             break;
         }
-    
-    
+
+
 }
 
 void EfectorFinal::pintar(int i){
     for (int j=0; j<i; j++){
         usleep(500000);
-        cout << "Estado: " << this->estado << setw(15) 
-                << "PINTANDO: " << setw(25) << "Cant. ciclos a realizar: " 
+        cout << "Estado: " << this->estado << setw(15)
+                << "PINTANDO: " << setw(25) << "Cant. ciclos a realizar: "
                 << i << setw(20) << "Ciclo actual: " << j+1 <<endl;
     }
 }
@@ -53,8 +53,8 @@ void EfectorFinal::pintar(int i){
 void EfectorFinal::sostener(int i){
     for (int j=0; j<i; j++){
         usleep(500000);
-        cout << "Estado: " << this->estado << setw(15) 
-                << "Sosteniendo: " << setw(25) << "Cant. ciclos a realizar: " 
+        cout << "Estado: " << this->estado << setw(15)
+                << "Sosteniendo: " << setw(25) << "Cant. ciclos a realizar: "
                 << i << setw(20) << "Ciclo actual: " << j+1 <<endl;
     }
 }
@@ -62,8 +62,8 @@ void EfectorFinal::sostener(int i){
 void EfectorFinal::soltar(int i){
     for (int j=0; j<i; j++){
         usleep(500000);
-        cout << "Estado: " << this->estado << setw(15) 
-                << "Soltando: " << setw(25) << "Cant. ciclos a realizar: " 
+        cout << "Estado: " << this->estado << setw(15)
+                << "Soltando: " << setw(25) << "Cant. ciclos a realizar: "
                 << i << setw(20) << "Ciclo actual: " << j+1 <<endl;
     }
 }
@@ -71,8 +71,8 @@ void EfectorFinal::soltar(int i){
 void EfectorFinal::rotar(int i){
     for (int j=0; j<i; j++){
         usleep(500000);
-        cout << "Estado: " << this->estado << setw(15) 
-                << "Rotando: " << setw(25) << "Cant. ciclos a realizar: " 
+        cout << "Estado: " << this->estado << setw(15)
+                << "Rotando: " << setw(25) << "Cant. ciclos a realizar: "
                 << i << setw(20) << "Ciclo actual: " << j+1 <<endl;
     }
 }
@@ -80,8 +80,8 @@ void EfectorFinal::rotar(int i){
 void EfectorFinal::cambiarVelocidad(int i){
     for (int j=0; j<i; j++){
         usleep(500000);
-        cout << "Estado: " << this->estado << setw(15) 
-                << "Cambiando velocidad: " << setw(25) << "Cant. ciclos a realizar: " 
+        cout << "Estado: " << this->estado << setw(15)
+                << "Cambiando velocidad: " << setw(25) << "Cant. ciclos a realizar: "
                 <<i<< setw(20) << "Ciclo actual: " << j+1 <<endl;
     }
 }
@@ -91,15 +91,15 @@ void EfectorFinal::setEstado(bool _estado){
 }
 
 
- void EfectorFinal::agregar(int _tarea,int _ciclos){
-        switch (_tarea) {
+void EfectorFinal::agregar(int _tarea,int _ciclos){
+    switch (_tarea) {
             case 1:{
                 this->agregarTarea("PINTAR");
                 this->agregarCiclo(_ciclos);
                 this->agregarAuxiliar(_tarea);
             }
             break;
-            case 2:{   
+            case 2:{
                 this->agregarTarea("SOSTENER");
                 this->agregarCiclo(_ciclos);
                 this->agregarAuxiliar(_tarea);
@@ -125,30 +125,30 @@ void EfectorFinal::setEstado(bool _estado){
             break;
         }
     }
- 
+
  void EfectorFinal::agregarTarea(std::string tarea){
         this->accion.push_back(tarea);
-     }
-    
+ }
+
  void EfectorFinal::agregarCiclo(int _ciclos){
          this->ciclos.push_back(_ciclos);
-     }
- 
+ }
+
  void EfectorFinal::agregarAuxiliar(int _tarea){
          this->auxiliar.push_back(_tarea);
  }
- 
+
  std::string EfectorFinal::getAccion(int i){
      return this->accion[i];
  }
- 
+
  int EfectorFinal::getCiclos(int i){
      return this->ciclos[i];
  }
- 
+
  int EfectorFinal::getAuxiliar(int i){
      return this->auxiliar[i];
  }
- 
+
  EfectorFinal::~EfectorFinal(){
  }

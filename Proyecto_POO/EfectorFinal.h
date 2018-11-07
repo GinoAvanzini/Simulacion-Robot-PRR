@@ -17,8 +17,10 @@
 #include "Conjunto.h"
 #include <vector>
 #include <string>
-using namespace std;
-
+using std::vector;
+using std::string;
+using std::cin;
+using std::cout;
 
 class EfectorFinal : public Conjunto{
 private:

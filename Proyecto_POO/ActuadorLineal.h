@@ -15,21 +15,27 @@
 #define ACTUADORLINEAL_H
 
 #include "Conjunto.h"
-#include <string>
-using std::string;
+#include <vector>
+using std::vector;
 
 class ActuadorLineal : public Conjunto{
 public:
     ActuadorLineal(int ID);
     ActuadorLineal(const ActuadorLineal& orig);
     virtual ~ActuadorLineal();
-
     void setVelActual(float velocidad);
     float getVelActual() const;
-
     float getVelLine_max() const;
     float getVelLine_min() const;
+    int getDistancia_max() const;
+    int getDistancia_min() const;
+    void agregarCoordz(float _coordz);
+    float getCoordz(int i);
 private:
+
+  std::vector<float> coordz;
+  int distancia_max;
+  int distancia_min;
   float vel_actual;
   float veline_max;
   float veline_min;

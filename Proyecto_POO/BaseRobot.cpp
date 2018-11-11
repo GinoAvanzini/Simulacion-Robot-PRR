@@ -43,9 +43,9 @@ void BaseRobot::inicio(){
   efector1 = new EfectorFinal(1);
 
   int tarea = 0;
-	bool estado = 0;
-	int ciclos = 0;
-	bool flag1 = true;
+  bool estado = 0;
+  int ciclos = 0;
+  bool flag1 = true;
   bool flag2;
   int cont = 0;
   int encendido = 0;

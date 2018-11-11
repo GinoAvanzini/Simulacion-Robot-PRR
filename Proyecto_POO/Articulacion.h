@@ -35,6 +35,7 @@ public:
     void setAngulo_min(int angulo_min);
     void agregarCoordfi(float _coordfi);
     float getCoordfi(int i);
+    void mover(float fi);
 
 
 private:

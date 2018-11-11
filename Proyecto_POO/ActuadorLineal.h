@@ -31,6 +31,7 @@ public:
     int getDistancia_min() const;
     void agregarCoordz(float _coordz);
     float getCoordz(int i);
+    void moverl(float z);
 private:
 
   std::vector<float> coordz;

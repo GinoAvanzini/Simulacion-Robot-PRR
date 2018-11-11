@@ -15,7 +15,6 @@
 
 
 #include "BaseRobot.h"
-#include "ActuadorLineal.h"
 #include <iostream>
 
 using std::cin;

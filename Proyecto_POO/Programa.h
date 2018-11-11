@@ -13,6 +13,8 @@
 
 #ifndef PROGRAMA_H
 #define PROGRAMA_H
+#include <fstream>
+using namespace std;
 
 class Programa {
 public:
@@ -20,7 +22,7 @@ public:
     Programa(const Programa& orig);
     virtual ~Programa();
     void leer();
-    float escribir();
+    float escribir(string i);
 private:
 
 };

@@ -4,5 +4,6 @@ Proyecto_POO/nbproject
 Proyecto_POO/Makefile
 Proyecto_POO/.dep.inc
 
+*.pro.user
 
 .directory

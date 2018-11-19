@@ -1,15 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * File:   Articulacion.h
- * Author: emiliano
- *
- * Created on 3 de noviembre de 2018, 16:22
- */
 
 #ifndef ARTICULACION_H
 #define ARTICULACION_H
@@ -17,6 +5,7 @@
 #include "Conjunto.h"
 #include <string>
 #include <vector>
+
 using std::string;
 using std::vector;
 

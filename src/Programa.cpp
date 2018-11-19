@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Programa.cpp
- * Author: emiliano
- * 
- * Created on 4 de noviembre de 2018, 14:16
- */
 
 #include "Programa.h"
+
+#include <iostream>
+
+using std::cerr;
+using std::cout;
+using std::endl;
+using std::ofstream;
+using std::ifstream;
+
 
 Programa::Programa() {
 }
@@ -23,7 +20,8 @@ Programa::~Programa() {
 }
 
 void Programa::leer(){
-     ifstream archivo("Datos.txt", ios::noreplace);
+    ifstream archivo("Datos.txt");
+//     ifstream archivo("Datos.txt", ios::noreplace);
     char linea[128];
     long contador = 0L;
 
@@ -37,12 +35,12 @@ void Programa::leer(){
         cout << linea << endl;
     }
     archivo.close();
-    return 0;
 } 
 
 float Programa::escribir(string i){
     
-    ofstream archivo("Datos.txt", ios::trunc);
-    
-    archivo<<i<<endl;
+//    ofstream archivo("Datos.txt", ios::trunc);
+    ofstream archivo("Datos.txt");
+
+    archivo << i << endl;
 }

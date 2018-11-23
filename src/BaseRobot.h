@@ -3,6 +3,10 @@
 #define BASEROBOT_H
 
 #include "Conjunto.h"
+#include "Articulacion.h"
+#include "ActuadorLineal.h"
+
+#include <vector>
 #include <string>
 
 using std::string;
@@ -22,6 +26,13 @@ public:
 private:
     bool estado;
     string ip_data;
+
+    Articulacion * articulacion1;
+    Articulacion * articulacion2;
+
+    ActuadorLineal * ActLineal;
+
+
 
 
 

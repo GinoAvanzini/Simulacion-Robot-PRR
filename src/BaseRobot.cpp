@@ -14,26 +14,38 @@ void BaseRobot::inicio(Qt3DCore::QEntity * rootEntity){
 
     //Instancia las articulaciones y el actuador lineal
 
+    {
+    QUrl path = QStringLiteral("qrc:/res/actuador_lineal.obj");
+    this->ActLineal = new ActuadorLineal(10, rootEntity, path);
+    }
 
+    {
+    QUrl path = QStringLiteral("qrc:/res/articulacion1.obj");
+    this->articulacion1 = new Articulacion(11, rootEntity, path);
+    }
 
+    {
+    QUrl path = QStringLiteral("qrc:/res/articulacion2.obj");
+    this->articulacion2 = new Articulacion(12, rootEntity, path);
+    }
 
 }
 
 BaseRobot::BaseRobot(int ID, bool t, string ip) : Conjunto(ID) {
     this->setEstado(t);
     this->setIp_data(ip);
-    this->setId(ID);
-//    this->inicio();
+
     //Llamar a otra función para la interfaz por línea de comandos
+
 }
 
 BaseRobot::BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url)
-    : Conjunto(rootEntity, url)
+    : Conjunto(ID, rootEntity, url)
 {
+
     this->setEstado(t);
     this->setIp_data(ip);
-    this->setId(ID);
-    this->inicio(rootEntity);
+
 }
 
 

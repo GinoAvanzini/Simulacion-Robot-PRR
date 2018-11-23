@@ -10,7 +10,11 @@ using std::vector;
 class ActuadorLineal : public Conjunto{
 public:
     ActuadorLineal(int ID);
+    ActuadorLineal(int ID, Qt3DCore::QEntity * rootEntity, QUrl url);
     virtual ~ActuadorLineal();
+
+    void setBasicSettings();
+
     void setVelActual(float velocidad);
     float getVelActual() const;
     float getVelLine_max() const;

@@ -11,8 +11,13 @@ using std::vector;
 
 class Articulacion : public Conjunto{
 public:
-    Articulacion(int ID,int amax, int amin);
+    Articulacion(int ID);
     virtual ~Articulacion();
+
+    Articulacion(int ID, Qt3DCore::QEntity * rootEntity, QUrl url);
+
+    void setBasicSettings(int ID);
+
     void setVelActual(float velocidad);
     float getVelActual() const;
     float getVelAng_max() const;

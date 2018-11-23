@@ -2,15 +2,43 @@
 #include "Articulacion.h"
 #include "Conjunto.h"
 
-Articulacion::Articulacion(int ID, int amax, int amin) : Conjunto (ID){
+Articulacion::Articulacion(int ID) : Conjunto (ID){
+
+    this->setBasicSettings(ID);
+
+}
+
+
+//BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url);
+
+Articulacion::Articulacion(int ID, Qt3DCore::QEntity * rootEntity, QUrl url)
+    : Conjunto (ID, rootEntity, url){
+
+    this->setBasicSettings(ID);
+
+}
+
+//BaseRobot::BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url)
+//    : Conjunto(ID, rootEntity, url)
+//{
+
+//    this->setEstado(t);
+//    this->setIp_data(ip);
+
+//}
+
+
+
+void Articulacion::setBasicSettings(int ID){
     this->setId(ID);
     this->setTipo("Articulacion");
     this->setPeso(250);
     this->setDescripcion("Articulacion que permite movimiento angular en el plano X-Y");
     this->velang_max = 1; //En rad/s
     this->velang_min = 0.1;
-    this->setAngulo_max(amax);
-    this->setAngulo_min(amin);
+    this->setAngulo_max(90);
+    this->setAngulo_min(-90);
+
 }
 
 Articulacion::~Articulacion() {

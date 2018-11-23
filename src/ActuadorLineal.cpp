@@ -3,7 +3,20 @@
 #include "Conjunto.h"
 
 ActuadorLineal::ActuadorLineal(int ID) : Conjunto (ID) {
-    this->setId(ID);
+
+    this->setBasicSettings();
+}
+
+
+ActuadorLineal::ActuadorLineal(int ID, Qt3DCore::QEntity * rootEntity, QUrl url)
+    : Conjunto (ID, rootEntity, url){
+
+    this->setBasicSettings();
+
+}
+
+void ActuadorLineal::setBasicSettings(){
+
     this->setTipo("Actuador Lineal");
     this->setPeso(250);
     this->setDescripcion("Actuador que permite el movimiento en Z");

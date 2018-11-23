@@ -9,6 +9,8 @@ interfaz::interfaz(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->resize(this->maximumWidth(), this->maximumHeight());
+
     this->view = new Qt3DExtras::Qt3DWindow;
     this->container = QWidget::createWindowContainer(this->view);
     this->layout = new QVBoxLayout(this);
@@ -17,6 +19,7 @@ interfaz::interfaz(QWidget *parent) :
     this->rootEntity = new Qt3DCore::QEntity;
     this->view->setRootEntity(this->rootEntity);
 
+    // Setup de la cámara y su controlador
     this->setCamera();
 
 
@@ -25,6 +28,9 @@ interfaz::interfaz(QWidget *parent) :
     /*
      *  CREACIÓN DE OBJETOS
      */
+
+
+
 
 
     //-----------------------------------------------

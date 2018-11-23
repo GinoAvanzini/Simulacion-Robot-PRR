@@ -5,6 +5,13 @@
 #include <iostream>
 #include <string>
 
+#include <Qt3DCore/QEntity>
+#include <Qt3DCore/QTransform>
+
+#include <Qt3DRender/QMesh>
+
+#include <Qt3DExtras/QPhongMaterial>
+
 #include <QObject>
 
 using std::string;
@@ -14,8 +21,11 @@ class Conjunto : QObject {
 public:
     void inicio();
     Conjunto();
+    Conjunto(Qt3DCore::QEntity * rootEntity, QUrl url);
     Conjunto(const Conjunto& orig);
     virtual ~Conjunto();
+
+    void setMaterial(Qt3DCore::QEntity * rootEntity);
 
     string getDescripcion() const;
     void setDescripcion(string descripcion);
@@ -34,6 +44,14 @@ private:
     int peso;
     string descripcion;
     string tipo;
+
+    Qt3DCore::QEntity * entity;
+    Qt3DCore::QTransform * transform;
+    Qt3DRender::QMesh * mesh;
+
+    Qt3DExtras::QPhongMaterial * material;
+
+
 
 };
 

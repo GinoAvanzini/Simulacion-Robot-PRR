@@ -5,10 +5,12 @@
 #include <iostream>
 #include <string>
 
+#include <QObject>
+
 using std::string;
 
 
-class Conjunto {
+class Conjunto : QObject {
 public:
     void inicio();
     Conjunto();

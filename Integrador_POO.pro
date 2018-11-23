@@ -33,7 +33,7 @@ SOURCES += \
     src/EfectorFinal.cpp \
     src/Eslabon.cpp \
     src/Programa.cpp \
-    src/mainwindow.cpp
+    src/interfaz.cpp
     
 HEADERS += \
     src/ActuadorLineal.h \
@@ -43,10 +43,10 @@ HEADERS += \
     src/EfectorFinal.h \
     src/Eslabon.h \
     src/Programa.h \
-    src/mainwindow.h
+    src/interfaz.h
 
 FORMS += \
-    src/mainwindow.ui
+    src/interfaz.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

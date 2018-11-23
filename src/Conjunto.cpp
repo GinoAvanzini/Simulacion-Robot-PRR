@@ -8,7 +8,7 @@ using std::cout;
 using std::string;
 
 
-Conjunto::Conjunto() {
+Conjunto::Conjunto() : QObject() {
 }
 
 Conjunto::Conjunto(const Conjunto& orig) {

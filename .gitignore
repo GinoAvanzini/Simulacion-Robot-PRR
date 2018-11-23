@@ -1,9 +1,15 @@
+# Archivos de proyecto de NetBeans
 Proyecto_POO/build
 Proyecto_POO/dist
 Proyecto_POO/nbproject
 Proyecto_POO/Makefile
 Proyecto_POO/.dep.inc
 
+# Configuración de usuario de QtCreator
 *.pro.user
 
 .directory
+
+# Modelo 
+res/*.mtl
+res/*.stl

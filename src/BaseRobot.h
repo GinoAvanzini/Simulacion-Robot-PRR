@@ -10,9 +10,9 @@ using std::string;
 class BaseRobot : public Conjunto{
 public:
     BaseRobot(int ID, bool t, string ip);
-    BaseRobot(const BaseRobot& orig);
+    BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url);
     virtual ~BaseRobot();
-    void inicio();
+    void inicio(Qt3DCore::QEntity * rootEntity);
     bool isEstado() const;
     void setEstado(bool estado);
     string getIp_data() const;
@@ -22,6 +22,9 @@ public:
 private:
     bool estado;
     string ip_data;
+
+
+
 };
 
 #endif /* BASEROBOT_H */

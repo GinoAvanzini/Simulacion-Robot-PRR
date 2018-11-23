@@ -19,7 +19,7 @@ private:
     std::vector<int> ciclos;
     std::vector<int> auxiliar;
 public:
-    EfectorFinal(bool _estado);
+    EfectorFinal(int ID, bool _estado);
     virtual ~EfectorFinal();
    // void informarCiclos();
     void pintar(int i);

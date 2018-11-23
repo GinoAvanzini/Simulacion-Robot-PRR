@@ -12,6 +12,8 @@
 
 #include <QVBoxLayout>
 
+#include "BaseRobot.h"
+
 namespace Ui {
 class interfaz;
 }
@@ -32,6 +34,8 @@ private:
     Qt3DExtras::Qt3DWindow * view;
     QWidget * container;
     QVBoxLayout * layout;
+
+    BaseRobot * BRobot;
 
     Qt3DCore::QEntity * rootEntity;
 

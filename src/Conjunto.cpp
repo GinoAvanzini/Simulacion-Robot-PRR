@@ -8,10 +8,11 @@ using std::cout;
 using std::string;
 
 
-Conjunto::Conjunto() : QObject() {
+Conjunto::Conjunto(int id) : QObject() {
+    this->setId(id);
 }
 
-Conjunto::Conjunto(Qt3DCore::QEntity * rootEntity, QUrl url){
+Conjunto::Conjunto(Qt3DCore::QEntity * rootEntity, QUrl url) : QObject(){
 
     this->entity = new Qt3DCore::QEntity(rootEntity);
     this->mesh = new Qt3DRender::QMesh();
@@ -20,6 +21,10 @@ Conjunto::Conjunto(Qt3DCore::QEntity * rootEntity, QUrl url){
     this->setMaterial(rootEntity);
 
     this->transform = new Qt3DCore::QTransform();
+
+    this->entity->addComponent(this->material);
+    this->entity->addComponent(this->mesh);
+    this->entity->addComponent(this->transform);
 
 }
 

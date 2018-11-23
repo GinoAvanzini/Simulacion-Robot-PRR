@@ -10,19 +10,32 @@
 using std::endl;
 
 
-void BaseRobot::inicio(){
+void BaseRobot::inicio(Qt3DCore::QEntity * rootEntity){
+
+    //Instancia las articulaciones y el actuador lineal
+
+
+
 
 }
 
-BaseRobot::BaseRobot(int ID, bool t, string ip) {
+BaseRobot::BaseRobot(int ID, bool t, string ip) : Conjunto(ID) {
     this->setEstado(t);
     this->setIp_data(ip);
     this->setId(ID);
-    this->inicio();
+//    this->inicio();
+    //Llamar a otra función para la interfaz por línea de comandos
 }
 
-BaseRobot::BaseRobot(const BaseRobot& orig) {
+BaseRobot::BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url)
+    : Conjunto(rootEntity, url)
+{
+    this->setEstado(t);
+    this->setIp_data(ip);
+    this->setId(ID);
+    this->inicio(rootEntity);
 }
+
 
 BaseRobot::~BaseRobot() {
 }

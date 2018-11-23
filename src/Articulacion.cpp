@@ -2,7 +2,7 @@
 #include "Articulacion.h"
 #include "Conjunto.h"
 
-Articulacion::Articulacion(int ID, int amax, int amin) {
+Articulacion::Articulacion(int ID, int amax, int amin) : Conjunto (ID){
     this->setId(ID);
     this->setTipo("Articulacion");
     this->setPeso(250);
@@ -11,9 +11,6 @@ Articulacion::Articulacion(int ID, int amax, int amin) {
     this->velang_min = 0.1;
     this->setAngulo_max(amax);
     this->setAngulo_min(amin);
-}
-
-Articulacion::Articulacion(const Articulacion& orig) {
 }
 
 Articulacion::~Articulacion() {

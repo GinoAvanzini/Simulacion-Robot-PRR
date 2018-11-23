@@ -12,7 +12,6 @@ using std::vector;
 class Articulacion : public Conjunto{
 public:
     Articulacion(int ID,int amax, int amin);
-    Articulacion(const Articulacion& orig);
     virtual ~Articulacion();
     void setVelActual(float velocidad);
     float getVelActual() const;

@@ -10,8 +10,9 @@ using std::cout;
 using std::setw;
 using std::endl;
 
-EfectorFinal::EfectorFinal(bool _estado){
+EfectorFinal::EfectorFinal(int ID, bool _estado) : Conjunto (ID) {
     this->setEstado(_estado);
+    this->setId(ID);
 }
 
 void EfectorFinal::iniciar(int i){

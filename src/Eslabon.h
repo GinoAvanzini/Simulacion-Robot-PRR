@@ -8,7 +8,6 @@ class Eslabon : public Conjunto{
 public:
     Eslabon(int ID); //eslabones brazo
     Eslabon(int longitud, int ID); //Eslabon columna
-    Eslabon(const Eslabon& orig);
     virtual ~Eslabon();
 
 private:

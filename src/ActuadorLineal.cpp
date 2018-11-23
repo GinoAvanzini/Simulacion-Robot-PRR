@@ -2,7 +2,7 @@
 #include "ActuadorLineal.h"
 #include "Conjunto.h"
 
-ActuadorLineal::ActuadorLineal(int ID) {
+ActuadorLineal::ActuadorLineal(int ID) : Conjunto (ID) {
     this->setId(ID);
     this->setTipo("Actuador Lineal");
     this->setPeso(250);
@@ -11,9 +11,6 @@ ActuadorLineal::ActuadorLineal(int ID) {
     this->veline_min = 0.5;
     this->distancia_max = 40;  //En mm
     this->distancia_min = 5;
-}
-
-ActuadorLineal::ActuadorLineal(const ActuadorLineal& orig) {
 }
 
 ActuadorLineal::~ActuadorLineal() {

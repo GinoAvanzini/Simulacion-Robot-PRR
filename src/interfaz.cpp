@@ -23,12 +23,14 @@ interfaz::interfaz(QWidget *parent) :
     this->setCamera();
 
 
-
-
     /*
-     *  CREACIÓN DE OBJETOS
+     *  CREACIÓN DE BASE ROBOT
      */
 
+    {
+    QUrl path = QStringLiteral("qrc:/res/base_robot.obj");
+    this->BRobot = new BaseRobot(0, true, "192.168.1.10", this->rootEntity, path);
+    }
 
 
 

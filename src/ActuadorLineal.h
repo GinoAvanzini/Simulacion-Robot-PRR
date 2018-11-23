@@ -10,7 +10,6 @@ using std::vector;
 class ActuadorLineal : public Conjunto{
 public:
     ActuadorLineal(int ID);
-    ActuadorLineal(const ActuadorLineal& orig);
     virtual ~ActuadorLineal();
     void setVelActual(float velocidad);
     float getVelActual() const;

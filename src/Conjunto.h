@@ -20,7 +20,7 @@ using std::string;
 class Conjunto : QObject {
 public:
     void inicio();
-    Conjunto();
+    Conjunto(int id);
     Conjunto(Qt3DCore::QEntity * rootEntity, QUrl url);
     Conjunto(const Conjunto& orig);
     virtual ~Conjunto();

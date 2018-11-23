@@ -3,7 +3,7 @@
 
 #include "Conjunto.h"
 
-Eslabon::Eslabon(int ID){ //eslabon brazo
+Eslabon::Eslabon(int ID) : Conjunto (ID){ //eslabon brazo
     this->longitud = 300;
     this->setTipo("Eslabon brazo");
     this->setId(ID);
@@ -12,16 +12,13 @@ Eslabon::Eslabon(int ID){ //eslabon brazo
 
 }
 
-Eslabon::Eslabon(int longitud, int ID) { //eslabon columna
+Eslabon::Eslabon(int longitud, int ID) : Conjunto (ID){ //eslabon columna
     this->longitud = longitud;
     this->setTipo("Eslabon columna");
     this->setId(ID);
     this->setPeso(4000);
     this->setDescripcion("Eslabon de columna de 400mm de alto");
 
-}
-
-Eslabon::Eslabon(const Eslabon& orig) {
 }
 
 Eslabon::~Eslabon() {

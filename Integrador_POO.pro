@@ -33,7 +33,8 @@ SOURCES += \
     src/EfectorFinal.cpp \
     src/Eslabon.cpp \
     src/Programa.cpp \
-    src/interfaz.cpp
+    src/interfaz.cpp \
+    src/control.cpp
     
 HEADERS += \
     src/ActuadorLineal.h \
@@ -43,7 +44,8 @@ HEADERS += \
     src/EfectorFinal.h \
     src/Eslabon.h \
     src/Programa.h \
-    src/interfaz.h
+    src/interfaz.h \
+    src/control.h
 
 FORMS += \
     src/interfaz.ui

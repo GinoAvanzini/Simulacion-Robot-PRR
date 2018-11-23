@@ -15,15 +15,15 @@ using std::endl;
 
 
 int main(int argc, char** argv) {
-//    int i;
-//    cout << "Ingrese 1 para encender el robot:"<<endl;
-//    cin >> i;
+    //    int i;
+    //    cout << "Ingrese 1 para encender el robot:"<<endl;
+    //    cin >> i;
 
     cout << "1: Terminal\n2: Interfaz Gráfica" << endl;
     int ui;
     cin >> ui;
     switch (ui){
-        /*
+    /*
         case 1:
             {
 
@@ -149,25 +149,25 @@ int main(int argc, char** argv) {
             }
             break;
             }*/
-        case 2:
-            {
-                QApplication app(argc, argv);
-                interfaz * window = new interfaz();
+    case 2:
+    {
+        QApplication app(argc, argv);
+        interfaz * window = new interfaz();
 
-//                window->createWindowContainer(
-//                window->
-//                window->setLayout()
+        //                window->createWindowContainer(
+        //                window->
+        //                window->setLayout()
 
-                window->show();
+        window->show();
 
-                return app.exec();
+        return app.exec();
 
-//                break;
-            }
+        //                break;
+    }
 
-        default:
-            break;
-        }
+    default:
+        break;
+    }
 
     return 0;
 }

@@ -15,18 +15,18 @@ void BaseRobot::inicio(Qt3DCore::QEntity * rootEntity){
     //Instancia las articulaciones y el actuador lineal
 
     {
-    QUrl path = QStringLiteral("qrc:/res/actuador_lineal.obj");
-    this->ActLineal = new ActuadorLineal(10, rootEntity, path);
+        QUrl path = QStringLiteral("qrc:/res/actuador_lineal.obj");
+        this->ActLineal = new ActuadorLineal(10, rootEntity, path);
     }
 
     {
-    QUrl path = QStringLiteral("qrc:/res/articulacion1.obj");
-    this->articulacion1 = new Articulacion(11, rootEntity, path);
+        QUrl path = QStringLiteral("qrc:/res/articulacion1.obj");
+        this->articulacion1 = new Articulacion(11, rootEntity, path);
     }
 
     {
-    QUrl path = QStringLiteral("qrc:/res/articulacion2.obj");
-    this->articulacion2 = new Articulacion(12, rootEntity, path);
+        QUrl path = QStringLiteral("qrc:/res/articulacion2.obj");
+        this->articulacion2 = new Articulacion(12, rootEntity, path);
     }
 
 }

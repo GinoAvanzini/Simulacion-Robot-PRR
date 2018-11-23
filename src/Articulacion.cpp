@@ -61,25 +61,25 @@ float Articulacion::getVelAng_min() const{
 }
 
 int Articulacion::getAngulo_max() const {
-        return angulo_max;
+    return angulo_max;
 }
 
 void Articulacion::setAngulo_max(int angulo_max) {
-        this->angulo_max = angulo_max;
+    this->angulo_max = angulo_max;
 }
 
 int Articulacion::getAngulo_min() const {
-        return angulo_min;
+    return angulo_min;
 }
 
 void Articulacion::setAngulo_min(int angulo_min) {
-        this->angulo_min = angulo_min;
+    this->angulo_min = angulo_min;
 }
 
 void Articulacion::agregarCoordfi(float _coordfi){
-         this->coordfi.push_back(_coordfi);
+    this->coordfi.push_back(_coordfi);
 }
 
 float Articulacion::getCoordfi(int i){
-     return this->coordfi[i];
+    return this->coordfi[i];
 }

@@ -26,12 +26,12 @@ public:
     void moverl(float z);
 private:
 
-  std::vector<float> coordz;
-  int distancia_max;
-  int distancia_min;
-  float vel_actual;
-  float veline_max;
-  float veline_min;
+    std::vector<float> coordz;
+    int distancia_max;
+    int distancia_min;
+    float vel_actual;
+    float veline_max;
+    float veline_min;
 
 };
 

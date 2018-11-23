@@ -47,18 +47,18 @@ float ActuadorLineal::getVelLine_min() const{
 
 
 int ActuadorLineal::getDistancia_max() const {
-        return distancia_max;
+    return distancia_max;
 }
 
 int ActuadorLineal::getDistancia_min() const {
-        return distancia_min;
+    return distancia_min;
 }
 
 void ActuadorLineal::agregarCoordz(float _coordz){
-         this->coordz.push_back(_coordz);
+    this->coordz.push_back(_coordz);
 }
 
 float ActuadorLineal::getCoordz(int i){
-     return this->coordz[i];
+    return this->coordz[i];
 }
 

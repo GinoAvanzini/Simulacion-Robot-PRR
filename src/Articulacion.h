@@ -35,7 +35,7 @@ private:
     std::vector<float> coordfi;
     int angulo_max;
     int angulo_min;
-    float vel_actual;   
+    float vel_actual;
     float velang_max;
     float velang_min;
 

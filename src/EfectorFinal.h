@@ -21,7 +21,7 @@ private:
 public:
     EfectorFinal(int ID, bool _estado);
     virtual ~EfectorFinal();
-   // void informarCiclos();
+    // void informarCiclos();
     void pintar(int i);
     void rotar(int i);
     void soltar(int i);

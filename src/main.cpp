@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
     //    cout << "Ingrese 1 para encender el robot:"<<endl;
     //    cin >> i;
 
-    cout << "1: Terminal\n2: Interfaz Gráfica" << endl;
+    cout << "1: Interfaz por Línea de Comandos\n2: Interfaz Gráfica" << endl;
     int ui;
     cin >> ui;
     switch (ui){

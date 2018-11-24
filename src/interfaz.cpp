@@ -16,6 +16,8 @@ interfaz::interfaz(QWidget *parent) :
     this->layout = new QVBoxLayout(this);
     this->layout->addWidget(this->container);
 
+    this->layout->addWidget(ui->pushButton);
+
     this->rootEntity = new Qt3DCore::QEntity;
     this->view->setRootEntity(this->rootEntity);
 

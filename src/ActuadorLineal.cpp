@@ -5,6 +5,7 @@
 ActuadorLineal::ActuadorLineal(int ID) : Conjunto (ID) {
 
     this->setBasicSettings();
+
 }
 
 

@@ -48,6 +48,10 @@ public:
     Control * controlpieza;
 
 
+    Qt3DCore::QTransform * transform;
+
+
+
 private:
     int id;
     int peso;
@@ -55,7 +59,6 @@ private:
     string tipo;
 
     Qt3DCore::QEntity * entity;
-    Qt3DCore::QTransform * transform;
     Qt3DRender::QMesh * mesh;
 
     Qt3DExtras::QPhongMaterial * material;

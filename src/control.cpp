@@ -80,8 +80,12 @@ void Control::updateAngle(QVector3D point, float angle){
 
 void Control::updateAltura(float altura){
 
+//    this->m_target->
+
     this->m_target->setTranslation(QVector3D(0, altura, 0));
 //    std::cout << "here\n";
+
+//    this->m_target->setMatrix(this->m_matrix.translate(QVector3D(0, altura, 0)));
 }
 
 QT_END_NAMESPACE

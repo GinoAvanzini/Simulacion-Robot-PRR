@@ -12,6 +12,11 @@
 
 #include <QVBoxLayout>
 
+#include <iostream>
+#include <fstream>
+
+#include <QFile>
+
 #include "BaseRobot.h"
 
 #include "controlador.h"
@@ -28,6 +33,7 @@ public:
     explicit interfaz(QWidget *parent = nullptr);
     void setCamera();
     ~interfaz();
+    void leerArchivo();
 
 private:
 
@@ -36,6 +42,8 @@ private:
     Qt3DExtras::Qt3DWindow * view;
     QWidget * container;
     QVBoxLayout * layout;
+
+    std::ifstream archivo;
 
 
     Qt3DCore::QEntity * rootEntity;

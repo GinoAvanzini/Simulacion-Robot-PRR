@@ -19,9 +19,11 @@ public:
     Control(QObject * parent) : QObject(parent)
       , m_target(nullptr)
       , m_matrix()
-//      , m_altura(40.0f)
+//      , m_altura(400.0f)
 //      , m_angle(0.0f)
-    {}
+    {
+        this->m_matrix.setToIdentity();
+    }
 
 //    virtual ~Control();
 

@@ -5,6 +5,7 @@
 #include "controlador.h"
 
 
+
 interfaz::interfaz(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::interfaz)
@@ -34,13 +35,20 @@ interfaz::interfaz(QWidget *parent) :
     this->ControladorRender = new Controlador(this->rootEntity);
 
 
-    this->ControladorRender->agregarInstruccion("G11");
-    this->ControladorRender->agregarInstruccion("20");
-    this->ControladorRender->agregarInstruccion("50");
-    this->ControladorRender->agregarInstruccion("C00");
 
 
 
+    /*
+     * LEER ARCHIVO
+     */
+
+//    this->ControladorRender->agregarInstruccion("G11");
+//    this->ControladorRender->agregarInstruccion("50"); // Velocidad
+//    this->ControladorRender->agregarInstruccion("20"); // Avance
+//    this->ControladorRender->agregarInstruccion("C00");
+
+
+    this->leerArchivo();
 
 
 
@@ -53,6 +61,28 @@ interfaz::interfaz(QWidget *parent) :
     this->view->setRootEntity(this->rootEntity);
 
     //-----------------------------------------------
+
+}
+
+
+void interfaz::leerArchivo(){
+
+//    this->archivo.open(":/res/GCode.txt");
+
+
+    // ARREGLAR PATH DEL ARCHIVO
+    this->archivo.open("/home/gino/Dropbox/FING/Programación_Orientada_a_Objetos/TP-Integrador_POO/res/GCode.txt");
+
+    std::string linea;
+
+    while(getline(this->archivo, linea)){
+
+        this->ControladorRender->agregarInstruccion(linea);
+
+        std::cout << linea << std::endl;
+
+    }
+
 
 }
 

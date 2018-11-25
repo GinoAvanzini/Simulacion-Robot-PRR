@@ -1,9 +1,9 @@
-<!DOCTYPE RCC>
 <RCC>
-  <qresource prefix="/">
-    <file>res/actuador_lineal.obj</file>
-    <file>res/base_robot.obj</file>
-    <file>res/articulacion1.obj</file>
-    <file>res/articulacion2.obj</file>
-  </qresource>
+    <qresource prefix="/">
+        <file>res/actuador_lineal.obj</file>
+        <file>res/base_robot.obj</file>
+        <file>res/articulacion1.obj</file>
+        <file>res/articulacion2.obj</file>
+        <file>res/GCode.txt</file>
+    </qresource>
 </RCC>

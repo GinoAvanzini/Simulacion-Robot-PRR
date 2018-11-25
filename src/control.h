@@ -15,7 +15,15 @@ class Control : public QObject
 
 
 public:
-    Control(QObject * parent = 0);
+//    Control(QObject *parent = 0);
+    Control(QObject * parent) : QObject(parent)
+      , m_target(nullptr)
+      , m_matrix()
+//      , m_altura(40.0f)
+//      , m_angle(0.0f)
+    {}
+
+//    virtual ~Control();
 
     void setTarget(Qt3DCore::QTransform *target);
     Qt3DCore::QTransform * getTarget() const;

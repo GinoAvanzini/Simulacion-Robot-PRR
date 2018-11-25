@@ -34,7 +34,8 @@ SOURCES += \
     src/Eslabon.cpp \
     src/Programa.cpp \
     src/interfaz.cpp \
-    src/control.cpp
+    src/control.cpp \
+    src/controlador.cpp
     
 HEADERS += \
     src/ActuadorLineal.h \
@@ -45,7 +46,8 @@ HEADERS += \
     src/Eslabon.h \
     src/Programa.h \
     src/interfaz.h \
-    src/control.h
+    src/control.h \
+    src/controlador.h
 
 FORMS += \
     src/interfaz.ui

@@ -14,6 +14,8 @@
 
 #include <QObject>
 
+#include "control.h"
+
 using std::string;
 
 
@@ -39,6 +41,13 @@ public:
     string getTipo() const;
     void setTipo(string tipo);
 
+    Qt3DCore::QTransform * getTransform();
+
+
+
+    Control * controlpieza;
+
+
 private:
     int id;
     int peso;
@@ -50,8 +59,6 @@ private:
     Qt3DRender::QMesh * mesh;
 
     Qt3DExtras::QPhongMaterial * material;
-
-
 
 };
 

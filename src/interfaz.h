@@ -14,6 +14,8 @@
 
 #include "BaseRobot.h"
 
+#include "controlador.h"
+
 namespace Ui {
 class interfaz;
 }
@@ -35,12 +37,13 @@ private:
     QWidget * container;
     QVBoxLayout * layout;
 
-    BaseRobot * BRobot;
 
     Qt3DCore::QEntity * rootEntity;
 
     Qt3DRender::QCamera * cameraEntity;
     Qt3DExtras::QOrbitCameraController * camController;
+
+    Controlador * ControladorRender;
 
 };
 

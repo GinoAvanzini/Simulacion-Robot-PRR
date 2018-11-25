@@ -20,8 +20,8 @@ void ActuadorLineal::setBasicSettings(){
     this->setTipo("Actuador Lineal");
     this->setPeso(250);
     this->setDescripcion("Actuador que permite el movimiento en Z");
-    this->veline_max = 50; //En mm/s
-    this->veline_min = 0.5;
+    this->veline_max = 500; //En mm/s
+    this->veline_min = 5;
     this->distancia_max = 40;  //En mm
     this->distancia_min = 5;
 }

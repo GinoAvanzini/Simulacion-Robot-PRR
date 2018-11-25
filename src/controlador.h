@@ -17,14 +17,19 @@ class Controlador
 {
 public:
     Controlador(Qt3DCore::QEntity * rootEntity);
-    void getInstruccion(std::string instruc);
+    void agregarInstruccion(std::string instruc);
     void interprete();
 
     void agregarAnimacion(int ID, bool sentido, int velocidad, int avance);
 
+    void startAnimacion();
+
 private:
-    std::list <QPropertyAnimation> animaciones;
-    std::list <QParallelAnimationGroup> paralelo;
+
+    QPropertyAnimation * animacionprueba;
+
+    std::list <QPropertyAnimation * > animaciones;
+    std::list <QParallelAnimationGroup * > paralelo;
     QSequentialAnimationGroup * secuencia;
 
     BaseRobot * BRobot;

@@ -22,19 +22,15 @@ public:
     string getIp_data() const;
     void setIp_data(string ip_data);
 
+    //
+    Articulacion * articulacion1;
+    Articulacion * articulacion2;
+    ActuadorLineal * ActLineal;
+
 
 private:
     bool estado;
     string ip_data;
-
-    Articulacion * articulacion1;
-    Articulacion * articulacion2;
-
-    ActuadorLineal * ActLineal;
-
-
-
-
 
 };
 

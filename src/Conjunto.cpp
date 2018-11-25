@@ -12,7 +12,7 @@ Conjunto::Conjunto(int ID) : QObject() {
     this->setId(ID);
 }
 
-Conjunto::Conjunto(int ID, Qt3DCore::QEntity * rootEntity, QUrl url) : QObject(){
+Conjunto::Conjunto(int ID, Qt3DCore::QEntity * rootEntity, QUrl url) : QObject(rootEntity){
 
     this->setId(ID);
 
@@ -22,11 +22,15 @@ Conjunto::Conjunto(int ID, Qt3DCore::QEntity * rootEntity, QUrl url) : QObject()
 
     this->setMaterial(rootEntity);
 
-    this->transform = new Qt3DCore::QTransform();
+    this->transform = new Qt3DCore::QTransform;
 
     this->entity->addComponent(this->material);
     this->entity->addComponent(this->mesh);
     this->entity->addComponent(this->transform);
+
+    //CONTROL DE LA PIEZA
+    this->controlpieza = new Control(this->transform);
+    this->controlpieza->setTarget(this->transform);
 
 }
 
@@ -71,3 +75,9 @@ void Conjunto::setPeso(int peso) {
 int Conjunto::getPeso() const {
     return peso;
 }
+
+Qt3DCore::QTransform * Conjunto::getTransform(){
+    return this->transform;
+}
+
+

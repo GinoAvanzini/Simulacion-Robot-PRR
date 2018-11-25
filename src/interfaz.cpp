@@ -2,6 +2,8 @@
 #include "interfaz.h"
 #include "ui_interfaz.h"
 
+#include "controlador.h"
+
 
 interfaz::interfaz(QWidget *parent) :
     QWidget(parent),
@@ -16,7 +18,7 @@ interfaz::interfaz(QWidget *parent) :
     this->layout = new QVBoxLayout(this);
     this->layout->addWidget(this->container);
 
-    this->layout->addWidget(ui->pushButton);
+//    this->layout->addWidget(ui->pushButton);
 
     this->rootEntity = new Qt3DCore::QEntity;
     this->view->setRootEntity(this->rootEntity);
@@ -29,11 +31,15 @@ interfaz::interfaz(QWidget *parent) :
      *  CREACIÓN DE BASE ROBOT
      */
 
-    {
-        QUrl path = QStringLiteral("qrc:/res/base_robot.obj");
-        this->BRobot = new BaseRobot(0, true, "192.168.1.10", this->rootEntity, path);
-    }
-    this->BRobot->inicio(rootEntity);
+    this->ControladorRender = new Controlador(this->rootEntity);
+
+
+    this->ControladorRender->agregarInstruccion("G11");
+    this->ControladorRender->agregarInstruccion("20");
+    this->ControladorRender->agregarInstruccion("50");
+    this->ControladorRender->agregarInstruccion("C00");
+
+
 
 
 

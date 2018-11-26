@@ -35,6 +35,15 @@ public:
     ~interfaz();
     void leerArchivo();
 
+private slots:
+    void on_Encendido_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_Apagado_clicked();
+
+    void on_Comenzar_clicked();
+
 private:
 
     Ui::interfaz *ui;

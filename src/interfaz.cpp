@@ -4,6 +4,8 @@
 
 #include "controlador.h"
 
+#include <iostream>
+
 
 
 interfaz::interfaz(QWidget *parent) :
@@ -12,12 +14,38 @@ interfaz::interfaz(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->resize(this->maximumWidth(), this->maximumHeight());
+//    this->resize(this->maximumWidth(), this->maximumHeight());
 
     this->view = new Qt3DExtras::Qt3DWindow;
     this->container = QWidget::createWindowContainer(this->view);
-    this->layout = new QVBoxLayout(this);
-    this->layout->addWidget(this->container);
+
+//    ui->widget->createWindowContainer(this->view);
+
+//    ui->horizontalLayout->addWidget(ui->widget);
+//    this->view->resize(1000, 500);
+    ui->horizontalLayout->addWidget(this->container);
+
+//    this->view->resize(800, 400);
+//    this->container->resize(800,400);
+    this->container->setMinimumWidth(1000);
+    this->container->setMinimumHeight(1000*9/16);
+
+    ui->verticalLayout->setAlignment(Qt::AlignCenter);
+//    this->container->resize(1000, 500);
+//    this->container->setLayout(new QHBoxLayout);
+
+//    ui->horizontalLayout_4->addWidget(this->container);
+//    ui->horizontalLayout_4->setAlignment(Qt::AlignLeft);
+
+
+
+
+//    ui->horizontalLayout_3->addWidget(this->container);
+
+//    ui->horizontalLayout->setAlignment(Qt::AlignLeft);
+
+
+//    this->layout->addWidget(this->container);
 
 //    this->layout->addWidget(ui->pushButton);
 
@@ -36,12 +64,7 @@ interfaz::interfaz(QWidget *parent) :
 
 
 
-
-    /*
-     * LEER ARCHIVO
-     */
-
-    this->leerArchivo();
+    ui->verticalLayout->setAlignment(Qt::AlignLeft);
 
 
     //-----------------------------------------------
@@ -92,4 +115,34 @@ void interfaz::setCamera(){
 interfaz::~interfaz()
 {
     delete ui;
+}
+
+void interfaz::on_Encendido_clicked()
+{
+    this->ControladorRender->setEstadoBR(true);
+    std::cout << "ON" << std::endl;
+}
+void interfaz::on_Apagado_clicked()
+{
+    this->ControladorRender->setEstadoBR(false);
+    std::cout << "OFF" << std::endl;
+}
+
+void interfaz::on_Comenzar_clicked()
+{
+    if (this->ControladorRender->getEstadoBR()){
+        /*
+         * LEER ARCHIVO
+         */
+
+        this->leerArchivo();
+
+    } else {
+        std::cout << "Encienda el Robot" << std::endl;
+    }
+}
+
+void interfaz::on_pushButton_2_clicked()
+{
+    return;
 }

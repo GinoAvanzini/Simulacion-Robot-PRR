@@ -24,6 +24,7 @@ public:
     void startAnimacion();
 
     bool getEstadoBR();
+    void setEstadoBR(bool estado);
 
 
 private:

@@ -150,6 +150,9 @@ void Controlador::startAnimacion(){
 bool Controlador::getEstadoBR(){
     return this->BRobot->getEstado();
 }
+void Controlador::setEstadoBR(bool estado){
+    this->BRobot->setEstado(estado);
+}
 
 
 //void agregarAnimacion(int ID, )

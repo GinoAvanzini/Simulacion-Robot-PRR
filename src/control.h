@@ -13,13 +13,14 @@ class Control : public QObject
     Q_PROPERTY(float angle READ getAngle WRITE setAngle NOTIFY angleChanged)
     Q_PROPERTY(float altura READ getAltura WRITE setAltura NOTIFY alturaChanged)
 
+//    Q_PROPERTY(float angle2 READ getAngle2 WRITE setAngle2 NOTIFY angleChanged)
 
 public:
 //    Control(QObject *parent = 0);
     Control(QObject * parent) : QObject(parent)
       , m_target(nullptr)
       , m_matrix()
-//      , m_altura(400.0f)
+      , m_altura(40.0f)
 //      , m_angle(0.0f)
     {
         this->m_matrix.setToIdentity();
@@ -34,10 +35,12 @@ public:
     float getAltura() const;
 
     void setAngle(float angle);
+    void setAngle2(float angle);
     float getAngle() const;
+    float getAngle2() const;
 
-    void updateAngle(QVector3D point, float angle);
-    void updateAltura(float altura);
+    void updateAngle();
+    void updateAltura();
 
 signals:
     void targetChanged();
@@ -52,6 +55,10 @@ private:
     QMatrix4x4 m_matrix;
     float m_altura;
     float m_angle;
+
+
+    float previous_altura = 0;
+    float previous_angle = 0;
 
 
 };

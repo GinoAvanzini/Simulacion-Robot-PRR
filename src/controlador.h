@@ -39,6 +39,8 @@ private:
 
     int alturaAbsoluta = 0;
 
+    int ang1Absoluto = 0;
+
     std::queue<std::string> instrucciones;
 
 };

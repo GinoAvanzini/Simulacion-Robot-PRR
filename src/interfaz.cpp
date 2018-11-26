@@ -18,36 +18,13 @@ interfaz::interfaz(QWidget *parent) :
 
     this->view = new Qt3DExtras::Qt3DWindow;
     this->container = QWidget::createWindowContainer(this->view);
-
-//    ui->widget->createWindowContainer(this->view);
-
-//    ui->horizontalLayout->addWidget(ui->widget);
-//    this->view->resize(1000, 500);
     ui->horizontalLayout->addWidget(this->container);
 
-//    this->view->resize(800, 400);
-//    this->container->resize(800,400);
     this->container->setMinimumWidth(1000);
     this->container->setMinimumHeight(1000*9/16);
 
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
-//    this->container->resize(1000, 500);
-//    this->container->setLayout(new QHBoxLayout);
 
-//    ui->horizontalLayout_4->addWidget(this->container);
-//    ui->horizontalLayout_4->setAlignment(Qt::AlignLeft);
-
-
-
-
-//    ui->horizontalLayout_3->addWidget(this->container);
-
-//    ui->horizontalLayout->setAlignment(Qt::AlignLeft);
-
-
-//    this->layout->addWidget(this->container);
-
-//    this->layout->addWidget(ui->pushButton);
 
     this->rootEntity = new Qt3DCore::QEntity;
     this->view->setRootEntity(this->rootEntity);
@@ -55,16 +32,22 @@ interfaz::interfaz(QWidget *parent) :
     // Setup de la cámara y su controlador
     this->setCamera();
 
+    // Setup de la luz
+    this->lightEntity = new Qt3DCore::QEntity(this->rootEntity);
+    this->light = new Qt3DRender::QPointLight(this->lightEntity);
+    this->light->setColor("white");
+    this->light->setIntensity(1);
+    this->lightEntity->addComponent(this->light);
+    Qt3DCore::QTransform * lightTransform = new Qt3DCore::QTransform(this->lightEntity);
+    lightTransform->setTranslation(QVector3D(150, 150, 0));
+    this->lightEntity->addComponent(lightTransform);
+
 
     /*
      *  CREACIÓN DEL CONTROLADOR
      */
 
     this->ControladorRender = new Controlador(this->rootEntity);
-
-
-
-    ui->verticalLayout->setAlignment(Qt::AlignLeft);
 
 
     //-----------------------------------------------
@@ -120,25 +103,27 @@ interfaz::~interfaz()
 void interfaz::on_Encendido_clicked()
 {
     this->ControladorRender->setEstadoBR(true);
-    std::cout << "ON" << std::endl;
+    ui->textEdit->setPlainText("ENCENDIDO");
 }
 void interfaz::on_Apagado_clicked()
 {
     this->ControladorRender->setEstadoBR(false);
-    std::cout << "OFF" << std::endl;
-}
+//    std::cout << "OFF" << std::endl;
+    ui->textEdit->setPlainText("APAGADO");}
 
 void interfaz::on_Comenzar_clicked()
 {
     if (this->ControladorRender->getEstadoBR()){
+
         /*
          * LEER ARCHIVO
          */
-
         this->leerArchivo();
 
     } else {
-        std::cout << "Encienda el Robot" << std::endl;
+
+        ui->textEdit->setPlainText("Encienda el Robot\n");
+
     }
 }
 

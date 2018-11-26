@@ -9,6 +9,8 @@
 #include <Qt3DCore/QEntity>
 
 #include <Qt3DRender/QCamera>
+#include <Qt3DRender/QEnvironmentLight>
+#include <Qt3DRender/QPointLight>
 
 #include <QVBoxLayout>
 
@@ -59,6 +61,8 @@ private:
 
     Qt3DRender::QCamera * cameraEntity;
     Qt3DExtras::QOrbitCameraController * camController;
+    Qt3DCore::QEntity * lightEntity;
+    Qt3DRender::QPointLight * light;
 
     Controlador * ControladorRender;
 

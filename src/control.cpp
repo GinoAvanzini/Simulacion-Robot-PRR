@@ -36,54 +36,79 @@ void Control::setTarget(Qt3DCore::QTransform * target){
         emit targetChanged();
     }
 }
+
 Qt3DCore::QTransform * Control::getTarget() const {
     return this->m_target;
 }
 
 
-void Control::setAltura(float altura){
-    if (!qFuzzyCompare(altura, m_altura)){
-        this->m_altura = altura;
-//        updateMatrix();
-        this->updateAltura(m_altura);
-        emit alturaChanged();
-    }
-}
+
 float Control::getAltura() const {
     return this->m_altura;
 //    return 400;
+}
+void Control::setAltura(float altura){
+    if (!qFuzzyCompare(altura, m_altura)){
+        this->m_altura = altura;
+        //        updateMatrix();
+        this->updateAltura();
+        emit alturaChanged();
+    }
+    this->previous_altura = m_altura;
+    this->m_altura = altura;
+    this->updateAltura();
 }
 
 
 void Control::setAngle(float angle){
     if (!qFuzzyCompare(angle, m_angle)){
-        m_angle = angle;
-//        updateAngle();
+        this->m_angle = angle;
+        this->updateAngle();
         emit angleChanged();
     }
+
+    this->previous_angle = m_angle;
+    this->m_angle = angle;
+    this->updateAngle();
+
 }
 float Control::getAngle() const {
     return this->m_angle;
 }
 
 
-void Control::updateAngle(QVector3D point, float angle){
+void Control::updateAngle(){
+
 
 //    QMatrix4x4 aux = new QTransform();
 //    this->m_target->rotateAround();
 //    this->m_matrix = QTransform
 
-    this->m_target->rotateAround(point, angle, QVector3D(0, 0, 1));
+//    this->m_target->setTranslation(QVector3D(0, 40, 0));
+
+//    this->m_target->rotateAround()
+
+    this->m_matrix.rotate(this->m_angle - this->previous_angle, QVector3D(0.0f, 1.0f, 0.0f));
+
+
+    this->m_target->setMatrix(this->m_matrix);
+
+
+
+
+//    this->m_target->setTranslation(QVector3D(0, -40, 0));
+
+//    this->m_target->rotateAround();
 
 }
 
 
-void Control::updateAltura(float altura){
+void Control::updateAltura(){
 
-//    this->m_target->
+    this->m_matrix.translate(QVector3D(0, this->m_altura - this->previous_altura, 0));
+    this->m_target->setMatrix(this->m_matrix);
 
-    this->m_target->setTranslation(QVector3D(0, altura, 0));
-//    std::cout << "here\n";
+//    this->m_target->setTranslation(QVector3D(0, altura, 0));
 
 //    this->m_target->setMatrix(this->m_matrix.translate(QVector3D(0, altura, 0)));
 }

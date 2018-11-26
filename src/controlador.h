@@ -24,11 +24,13 @@ public:
     void interprete();
 
     void agregarAnimacion(int ID, bool sentido, int velocidad, int avance);
+    void agregarAnimacion(int ID, int ciclos);
     void startAnimacion();
 
     bool getEstadoBR();
     void setEstadoBR(bool estado);
 
+    BaseRobot * BRobot;
 
 private:
 
@@ -36,7 +38,6 @@ private:
     std::list <QParallelAnimationGroup * > paralelo;
     QSequentialAnimationGroup * secuencia;
 
-    BaseRobot * BRobot;
 
     int alturaAbsoluta = 0;
     int ang1Absoluto = 0;

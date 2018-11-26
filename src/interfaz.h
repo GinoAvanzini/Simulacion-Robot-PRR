@@ -48,6 +48,8 @@ private slots:
 
     void on_SALIR_clicked();
 
+    void on_Descripcion_clicked();
+
 private:
 
     Ui::interfaz *ui;

@@ -67,7 +67,7 @@ void Conjunto::setId(int id) {
 }
 
 string Conjunto::getDescripcion() const {
-    return descripcion;
+    return this->descripcion;
 }
 void Conjunto::setDescripcion(string descripcion) {
     this->descripcion = descripcion;

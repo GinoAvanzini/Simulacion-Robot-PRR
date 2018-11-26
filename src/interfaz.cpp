@@ -4,6 +4,8 @@
 
 #include "controlador.h"
 
+#include <QStringLiteral>
+
 #include <iostream>
 
 
@@ -20,8 +22,8 @@ interfaz::interfaz(QWidget *parent) :
     this->container = QWidget::createWindowContainer(this->view);
     ui->horizontalLayout->addWidget(this->container);
 
-    this->container->setMinimumWidth(1000);
-    this->container->setMinimumHeight(1000*9/16);
+    this->container->setMinimumWidth(1100);
+    this->container->setMinimumHeight(1100*9/16);
 
 
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
@@ -125,7 +127,8 @@ void interfaz::on_Encendido_clicked()
 void interfaz::on_Apagado_clicked()
 {
     this->ControladorRender->setEstadoBR(false);
-    ui->textEdit->setPlainText("APAGADO");}
+    ui->textEdit->setPlainText("APAGADO");
+}
 
 void interfaz::on_Comenzar_clicked()
 {
@@ -143,6 +146,26 @@ void interfaz::on_Comenzar_clicked()
     }
 }
 
+void interfaz::on_Descripcion_clicked()
+{
+    ui->textEdit_2->append("Robot PRR tipo Scara\n");
+    ui->textEdit_2->append("Descripción de piezas\n");
+
+    //No pude acceder a getDescripcion, getPeso por alguna razón, fijate si lo podes
+    //solucionar. Por ahora lo hardcodeo
+
+    ui->textEdit_2->append("- Actuador Lineal:\n");
+    ui->textEdit_2->append("  Actuador que permite el movimiento en Z\n  Peso: 250\n");
+
+    ui->textEdit_2->append("- Articulacion:\n");
+    ui->textEdit_2->append("  Articulacion que permite movimiento angular en el plano X-Y\n  Peso: 250");
+
+
+    //    ui->textEdit_2->append();
+    return;
+
+}
+
 void interfaz::on_pushButton_2_clicked()
 {
     return;
@@ -152,3 +175,10 @@ void interfaz::on_SALIR_clicked()
 {
     this->~interfaz();
 }
+
+
+
+
+
+
+

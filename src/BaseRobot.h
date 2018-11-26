@@ -5,6 +5,7 @@
 #include "Conjunto.h"
 #include "Articulacion.h"
 #include "ActuadorLineal.h"
+#include "efectorfinal.h"
 
 #include <vector>
 #include <string>
@@ -26,7 +27,7 @@ public:
     Articulacion * articulacion1;
     Articulacion * articulacion2;
     ActuadorLineal * ActLineal;
-
+    EfectorFinal * EfectorF;
 
 private:
     bool estado;

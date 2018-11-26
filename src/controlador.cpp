@@ -101,11 +101,64 @@ void Controlador::interprete(){
 
         } else if (aux.front() == 'C') {
             this->startAnimacion();
+
+        } else if (aux.front() == 'H') {
+            aux.erase(0, 1);
+            if (aux.front() == '1'){
+                aux.erase(0, 1);
+                ID = 1;
+            } else if (aux.front() == '2') {
+                aux.erase(0, 1);
+                ID = 2;
+            } else if (aux.front() == '3') {
+                aux.erase(0, 1);
+                ID = 3;
+            } else if (aux.front() == '4') {
+                aux.erase(0, 1);
+                ID = 4;
+            }
+
+            aux = this->instrucciones.front();
+            this->instrucciones.pop();
+            int ciclos = std::stoi(aux, nullptr, 10);
+
+            this->agregarAnimacion(ID, ciclos);
+
         }
     }
 
 
 }
+
+
+void Controlador::agregarAnimacion(int ID, int ciclos){
+
+    int duracion;
+    switch(ID){
+    case 1:
+        duracion = this->BRobot->EfectorF->getDuracionPintar();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+
+    case 2:
+        duracion = this->BRobot->EfectorF->getDuracionRotar();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+
+    case 3:
+        duracion = this->BRobot->EfectorF->getDuracionSoltar();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+
+    case 4:
+        duracion = this->BRobot->EfectorF->getDuracionSostener();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+    }
+
+
+}
+
 
 void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avance){
 

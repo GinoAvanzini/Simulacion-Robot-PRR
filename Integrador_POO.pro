@@ -33,7 +33,8 @@ SOURCES += \
     src/Conjunto.cpp \
     src/interfaz.cpp \
     src/control.cpp \
-    src/controlador.cpp
+    src/controlador.cpp \
+    src/efectorfinal.cpp
     
 HEADERS += \
     src/ActuadorLineal.h \
@@ -42,7 +43,8 @@ HEADERS += \
     src/Conjunto.h \
     src/interfaz.h \
     src/control.h \
-    src/controlador.h
+    src/controlador.h \
+    src/efectorfinal.h
 
 FORMS += \
     src/interfaz.ui

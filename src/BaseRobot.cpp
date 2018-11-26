@@ -27,6 +27,8 @@ void BaseRobot::inicio(Qt3DCore::QEntity * rootEntity){
         this->articulacion2 = new Articulacion(12, rootEntity, path);
     }
 
+    this->EfectorF = new EfectorFinal(50);
+
 
 
 //    this->articulacion2->transform->rotateAround(QVector3D(0, 0, 0), 45, QVector3D(0, 10, 0));

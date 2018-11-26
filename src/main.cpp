@@ -150,7 +150,7 @@ int main(int argc, char** argv) {
             break;
             }*/
     case 2:
-    {
+
         QApplication app(argc, argv);
         interfaz * window = new interfaz();
 
@@ -160,13 +160,19 @@ int main(int argc, char** argv) {
 
         window->show();
 
-        return app.exec();
+        //        delete window;
+        //        return app.exec();
+        app.exec();
 
-        //                break;
-    }
+        delete window;
 
-    default:
         break;
+
+
+//    default:
+//        break;
+
+
     }
 
     return 0;

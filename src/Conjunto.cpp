@@ -40,6 +40,13 @@ Conjunto::Conjunto(const Conjunto& orig) {
 }
 
 Conjunto::~Conjunto() {
+
+    delete this->entity;
+    delete this->mesh;
+    delete this->material;
+    delete this->controlpieza;
+    delete this->transform;
+
 }
 
 void Conjunto::setMaterial(Qt3DCore::QEntity * rootEntity){

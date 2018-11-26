@@ -50,6 +50,12 @@ BaseRobot::BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, 
 
 
 BaseRobot::~BaseRobot() {
+
+    delete this->articulacion1;
+    delete this->articulacion2;
+    delete this->ActLineal;
+
+
 }
 
 bool BaseRobot::getEstado() const {

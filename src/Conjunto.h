@@ -25,7 +25,8 @@ public:
     Conjunto(int ID);
     Conjunto(int ID, Qt3DCore::QEntity * rootEntity, QUrl url);
     Conjunto(const Conjunto& orig);
-    virtual ~Conjunto();
+
+    ~Conjunto(void);
 
     void setMaterial(Qt3DCore::QEntity * rootEntity);
 

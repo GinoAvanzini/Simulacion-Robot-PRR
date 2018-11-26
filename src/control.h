@@ -26,7 +26,7 @@ public:
         this->m_matrix.setToIdentity();
     }
 
-//    virtual ~Control();
+    ~Control();
 
     void setTarget(Qt3DCore::QTransform *target);
     Qt3DCore::QTransform * getTarget() const;
@@ -51,6 +51,7 @@ protected:
     void updateMatrix();
 
 private:
+
     Qt3DCore::QTransform * m_target;
     QMatrix4x4 m_matrix;
     float m_altura;

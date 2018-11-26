@@ -113,4 +113,10 @@ void Control::updateAltura(){
 //    this->m_target->setMatrix(this->m_matrix.translate(QVector3D(0, altura, 0)));
 }
 
+
+Control::~Control(){
+
+}
+
+
 QT_END_NAMESPACE

@@ -11,11 +11,11 @@
 
 using std::string;
 
-class BaseRobot : public Conjunto{
+class BaseRobot : public Conjunto {
 public:
     BaseRobot(int ID, bool t, string ip);
     BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url);
-    virtual ~BaseRobot();
+    ~BaseRobot();
     void inicio(Qt3DCore::QEntity * rootEntity);
     bool getEstado() const;
     void setEstado(bool estado);

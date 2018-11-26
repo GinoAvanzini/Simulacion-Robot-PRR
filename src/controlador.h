@@ -17,6 +17,7 @@ class Controlador
 {
 public:
     Controlador(Qt3DCore::QEntity * rootEntity);
+    ~Controlador();
     void agregarInstruccion(std::string instruc);
     void interprete();
 
@@ -28,8 +29,6 @@ public:
 
 
 private:
-
-    QPropertyAnimation * animacionprueba;
 
     std::list <QPropertyAnimation * > animaciones;
     std::list <QParallelAnimationGroup * > paralelo;

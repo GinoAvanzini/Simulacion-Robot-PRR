@@ -97,7 +97,23 @@ void interfaz::setCamera(){
 
 interfaz::~interfaz()
 {
-    delete ui;
+
+    delete this->view;
+    delete this->container;
+    delete this->layout;
+    delete this->rootEntity;
+    delete this->cameraEntity;
+
+    delete this->camController;
+    delete this->light;
+    delete this->lightEntity;
+
+    delete this->ControladorRender;
+
+    delete this->ui;
+
+
+
 }
 
 void interfaz::on_Encendido_clicked()
@@ -130,4 +146,9 @@ void interfaz::on_Comenzar_clicked()
 void interfaz::on_pushButton_2_clicked()
 {
     return;
+}
+
+void interfaz::on_SALIR_clicked()
+{
+    this->~interfaz();
 }

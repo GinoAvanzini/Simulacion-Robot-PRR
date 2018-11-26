@@ -44,10 +44,10 @@ void Controlador::agregarInstruccion(std::string instruc){
 
 void Controlador::interprete(){
 
-    int ID;
+    int ID = 0;
     bool sentido = true;
-    int velocidad;
-    int avance;
+    int velocidad = 0;
+    int avance = 0;  //Inicialización con valores nulos
 
     bool flag = true;
 
@@ -69,15 +69,15 @@ void Controlador::interprete(){
             }
 
             //Implementación de homing de altura G50
-//                else if (aux.front() == '5'){
-//                aux.erase(0, 2);
-//                ID = 10;
-//                sentido = false;
-//                avance = abs(this->alturaAbsoluta);
-//                flag = false;
-//                velocidad = 20;
+            //                else if (aux.front() == '5'){
+            //                aux.erase(0, 2);
+            //                ID = 10;
+            //                sentido = false;
+            //                avance = abs(this->alturaAbsoluta);
+            //                flag = false;
+            //                velocidad = 20;
 
-//            }
+            //            }
 
             if (aux.front() == '1' && flag){
                 sentido = true;
@@ -115,38 +115,39 @@ void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avan
 
     switch(ID){
 
-        case 10:  //Actuador Lineal
+    case 10:  //Actuador Lineal
 
-            this->animaciones.push_front(new QPropertyAnimation(this->BRobot->ActLineal->getTransform()));
-            this->paralelo.push_front(new QParallelAnimationGroup());
-
-            this->animaciones.front()->setTargetObject(this->BRobot->ActLineal->controlpieza);
-            this->animaciones.front()->setPropertyName("altura");
-            this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
-            this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
-            this->animaciones.front()->setDuration(1000*avance/velocidad);
-
-            this->paralelo.front()->addAnimation(this->animaciones.front());
+        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->ActLineal->getTransform()));
 
 
-            this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
+        this->paralelo.push_front(new QParallelAnimationGroup());
 
-            this->animaciones.front()->setTargetObject(this->BRobot->articulacion1->controlpieza);
-            this->animaciones.front()->setPropertyName("altura");
-            this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
-            this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
-            this->animaciones.front()->setDuration(1000*avance/velocidad);
+        this->animaciones.front()->setTargetObject(this->BRobot->ActLineal->controlpieza);
+        this->animaciones.front()->setPropertyName("altura");
+        this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
+        this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
+        this->animaciones.front()->setDuration(1000*avance/velocidad);
+
+        this->paralelo.front()->addAnimation(this->animaciones.front());
 
 
-            this->paralelo.front()->addAnimation(this->animaciones.front());
+        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
+
+        this->animaciones.front()->setTargetObject(this->BRobot->articulacion1->controlpieza);
+        this->animaciones.front()->setPropertyName("altura");
+        this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
+        this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
+        this->animaciones.front()->setDuration(1000*avance/velocidad);
+
+        this->paralelo.front()->addAnimation(this->animaciones.front());
 
 
-            this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion2->getTransform()));
+        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion2->getTransform()));
 
-            this->animaciones.front()->setTargetObject(this->BRobot->articulacion2->controlpieza);
-            this->animaciones.front()->setPropertyName("altura");
-            this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
-            this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
+        this->animaciones.front()->setTargetObject(this->BRobot->articulacion2->controlpieza);
+        this->animaciones.front()->setPropertyName("altura");
+        this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
+        this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
         this->animaciones.front()->setDuration(1000*avance/velocidad);
 
         this->paralelo.front()->addAnimation(this->animaciones.front());
@@ -159,7 +160,7 @@ void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avan
         break;
 
 
-    case 11: // Primera articulación. Mueve ambas articulaciones
+    case 11: // Primera articulación. Mueve ambos brazos con movimiento rotacional
 
         this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
         this->paralelo.push_front(new QParallelAnimationGroup());
@@ -213,3 +214,21 @@ bool Controlador::getEstadoBR(){
 void Controlador::setEstadoBR(bool estado){
     this->BRobot->setEstado(estado);
 }
+
+Controlador::~Controlador(){
+
+    int n = this->animaciones.size();
+    for (int i = 0; i<n; i++){
+        delete this->animaciones.front();
+    }
+
+    n = this->paralelo.size();
+    for (int i = 0; i < n; i++){
+        delete this->paralelo.front();
+    }
+
+    delete this->secuencia;
+    delete this->BRobot;
+
+}
+

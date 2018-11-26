@@ -5,6 +5,8 @@
 #include <string>
 #include <queue>
 
+#include <cmath>
+
 #include <QPropertyAnimation>
 #include <QParallelAnimationGroup>
 #include <QSequentialAnimationGroup>
@@ -37,8 +39,10 @@ private:
     BaseRobot * BRobot;
 
     int alturaAbsoluta = 0;
-
     int ang1Absoluto = 0;
+    int ang2Absoluto = 0;
+
+    QVector3D rotationAxis = QVector3D(40, 0, 0);
 
     std::queue<std::string> instrucciones;
 

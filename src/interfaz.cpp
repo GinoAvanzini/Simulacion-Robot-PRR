@@ -23,6 +23,7 @@ interfaz::interfaz(QWidget *parent) :
     this->container->setMinimumWidth(1000);
     this->container->setMinimumHeight(1000*9/16);
 
+
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
 
 

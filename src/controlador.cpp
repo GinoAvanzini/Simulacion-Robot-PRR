@@ -28,6 +28,10 @@ Controlador::Controlador(Qt3DCore::QEntity * rootEntity)
 
     this->BRobot->inicio(rootEntity);
 
+    // Vector auxiliar que contiene el punto de rotacion del segundo brazo
+    // Se inicializa en la posicion inicial de la articulacion (40, 0, 0)
+    this->BRobot->articulacion2->setRotationAxis(this->rotationAxis);
+
 
     // Instancio contenedor con la animacion
     this->secuencia = new QSequentialAnimationGroup();
@@ -192,12 +196,53 @@ void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avan
 
         this->ang1Absoluto += signo*avance;
 
+//        this->rotationAxis = QVector3D(40*cos(this->ang1Absoluto*3.1416/180), 0, 40*sin(this->ang1Absoluto*3.1416/180));
+
+//        this->BRobot->articulacion2->setRotationAxis(this->rotationAxis);
+
+
         break;
 
+    case 12:
+
+//        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
+//        this->paralelo.push_front(new QParallelAnimationGroup());
+
+//        this->animaciones.front()->setTargetObject(this->BRobot->articulacion1->controlpieza);
+
+//        this->animaciones.front()->setPropertyName("angle");
+//        this->animaciones.front()->setStartValue(QVariant::fromValue(this->ang1Absoluto));
+//        this->animaciones.front()->setEndValue(QVariant::fromValue(this->ang1Absoluto + signo*avance));
+//        this->animaciones.front()->setDuration(1000*avance/velocidad);
+
+//        this->paralelo.front()->addAnimation(this->animaciones.front());
+
+
+//        this->secuencia->addAnimation(this->paralelo.front());
+
+//        this->ang1Absoluto += signo*avance;
 
 
 
+        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion2->getTransform()));
+        this->paralelo.push_front(new QParallelAnimationGroup());
 
+        this->animaciones.front()->setTargetObject(this->BRobot->articulacion2->controlpieza);
+
+        this->animaciones.front()->setPropertyName("angle2");
+        this->animaciones.front()->setStartValue(QVariant::fromValue(this->ang2Absoluto));
+        this->animaciones.front()->setEndValue(QVariant::fromValue(this->ang2Absoluto + signo*avance));
+        this->animaciones.front()->setDuration(1000*avance/velocidad);
+
+        this->paralelo.front()->addAnimation(this->animaciones.front());
+
+        this->secuencia->addAnimation(this->paralelo.front());
+
+        this->ang2Absoluto += signo*avance;
+
+
+
+        break;
 
 
     }

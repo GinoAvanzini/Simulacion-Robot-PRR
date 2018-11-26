@@ -3,6 +3,7 @@
 #define ARTICULACION_H
 
 #include "Conjunto.h"
+
 #include <string>
 #include <vector>
 
@@ -30,6 +31,8 @@ public:
     float getCoordfi(int i);
     void mover(float fi);
 
+    void setRotationAxis(QVector3D eje);
+
 
 private:
     std::vector<float> coordfi;
@@ -38,6 +41,10 @@ private:
     float vel_actual;
     float velang_max;
     float velang_min;
+
+    QVector3D rotation = QVector3D(0, 0, 0);
+
+
 
 };
 

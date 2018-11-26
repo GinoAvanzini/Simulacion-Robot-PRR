@@ -44,6 +44,13 @@ void Articulacion::setBasicSettings(int ID){
 Articulacion::~Articulacion() {
 }
 
+
+void Articulacion::setRotationAxis(QVector3D eje){
+    this->rotation = eje;
+
+    this->controlpieza->setRotationAxis(eje);
+}
+
 void Articulacion::setVelActual(float velocidad){
     this->vel_actual = velocidad;
 }

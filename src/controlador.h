@@ -21,8 +21,10 @@ public:
     void interprete();
 
     void agregarAnimacion(int ID, bool sentido, int velocidad, int avance);
-
     void startAnimacion();
+
+    bool getEstadoBR();
+
 
 private:
 
@@ -33,6 +35,8 @@ private:
     QSequentialAnimationGroup * secuencia;
 
     BaseRobot * BRobot;
+
+    int alturaAbsoluta = 0;
 
     std::queue<std::string> instrucciones;
 

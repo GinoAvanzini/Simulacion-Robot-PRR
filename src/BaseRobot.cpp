@@ -52,7 +52,7 @@ BaseRobot::BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, 
 BaseRobot::~BaseRobot() {
 }
 
-bool BaseRobot::isEstado() const {
+bool BaseRobot::getEstado() const {
     return estado;
 }
 

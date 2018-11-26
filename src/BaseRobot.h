@@ -17,7 +17,7 @@ public:
     BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url);
     virtual ~BaseRobot();
     void inicio(Qt3DCore::QEntity * rootEntity);
-    bool isEstado() const;
+    bool getEstado() const;
     void setEstado(bool estado);
     string getIp_data() const;
     void setIp_data(string ip_data);

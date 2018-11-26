@@ -29,11 +29,10 @@ interfaz::interfaz(QWidget *parent) :
 
 
     /*
-     *  CREACIÓN DE BASE ROBOT
+     *  CREACIÓN DEL CONTROLADOR
      */
 
     this->ControladorRender = new Controlador(this->rootEntity);
-
 
 
 
@@ -42,18 +41,7 @@ interfaz::interfaz(QWidget *parent) :
      * LEER ARCHIVO
      */
 
-//    this->ControladorRender->agregarInstruccion("G11");
-//    this->ControladorRender->agregarInstruccion("50"); // Velocidad
-//    this->ControladorRender->agregarInstruccion("20"); // Avance
-//    this->ControladorRender->agregarInstruccion("C00");
-
-
     this->leerArchivo();
-
-
-
-
-
 
 
     //-----------------------------------------------

@@ -1,12 +1,14 @@
 #include "controlador.h"
 
+#include <stdlib.h>
+
 Controlador::Controlador(Qt3DCore::QEntity * rootEntity)
 {
 
     //Render de Base Robot y las articulaciones
     {
         QUrl path = QStringLiteral("qrc:/res/base_robot.obj");
-        this->BRobot = new BaseRobot(0, true, "192.168.1.10", rootEntity, path);
+        this->BRobot = new BaseRobot(0, false, "192.168.1.10", rootEntity, path);
     }
     this->BRobot->inicio(rootEntity);
 
@@ -31,6 +33,8 @@ void Controlador::interprete(){
     int velocidad;
     int avance;
 
+    bool flag = true;
+
     std::string aux;
     while(!this->instrucciones.empty()){
         aux = this->instrucciones.front();
@@ -43,26 +47,36 @@ void Controlador::interprete(){
             } else if (aux.front() == '2'){ //Primera articulacion
                 aux.erase(0, 1);
                 ID = 11;
-            } else {  // Segunda articulacion
+            } else if (aux.front() == '2'){  // Segunda articulacion
                 aux.erase(0, 1);
                 ID = 12;
             }
 
-            if (aux.front() == '1'){
+            //Implementación de homing de altura G50
+//                else if (aux.front() == '5'){
+//                aux.erase(0, 2);
+//                ID = 10;
+//                sentido = false;
+//                avance = abs(this->alturaAbsoluta);
+//                flag = false;
+//                velocidad = 20;
+
+//            }
+
+            if (aux.front() == '1' && flag){
                 sentido = true;
-            } else if (aux.front() == '2') {
+            } else if (aux.front() == '2' && flag) {
                 sentido = false;
             }
+            if (flag) { // Si es G50 no entra acá
+                aux = this->instrucciones.front();
+                this->instrucciones.pop();
+                velocidad = std::stoi(aux, nullptr, 10);
+                aux = this->instrucciones.front();
+                this->instrucciones.pop();
+                avance = std::stoi(aux, nullptr, 10);
 
-            aux = this->instrucciones.front();
-            this->instrucciones.pop();
-            velocidad = std::stoi(aux, nullptr, 10);
-
-            aux = this->instrucciones.front();
-            this->instrucciones.pop();
-            avance = std::stoi(aux, nullptr, 10);
-
-            //REALIZAR ANIMACION
+            }
 
             this->agregarAnimacion(ID, sentido, velocidad, avance);
             // THIS.ANIMACION(ID, SENTIDO, VELOCIDAD, AVANCE)
@@ -80,136 +94,61 @@ void Controlador::interprete(){
 
 void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avance){
 
-//    switch(ID){
-//    case 10:  //Actuador Lineal
+    switch(ID){
+    case 10:  //Actuador Lineal
+        int signo;
+        if (sentido == true){
+            signo = 1;
+        } else {
+            signo = -1;
+        }
 
 
-//        std::list <QPropertyAnimation> animaciones;
-//        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->ActLineal->getTransform()));
-//        animaciones.front()->setTargetObject(this->BRobot->ActLineal->controlpieza);
-//        animaciones.front()->setPropertyName("altura");
-//        animaciones.front()->setStartValue(QVariant::fromValue(0));
-//        animaciones.front()->setEndValue(QVariant::fromValue(avance));
+        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->ActLineal->getTransform()));
 
-    this->animaciones.push_front(new QPropertyAnimation(this->BRobot->ActLineal->getTransform()));
+        this->animaciones.front()->setTargetObject(this->BRobot->ActLineal->controlpieza);
+        this->animaciones.front()->setPropertyName("altura");
+        this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
+        this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
+        this->animaciones.front()->setDuration(1000*avance/velocidad);
 
-    this->animaciones.front()->setTargetObject(this->BRobot->ActLineal->controlpieza);
-    this->animaciones.front()->setPropertyName("altura");
-    this->animaciones.front()->setStartValue(QVariant::fromValue(0));
-    this->animaciones.front()->setEndValue(QVariant::fromValue(-avance));
-    this->animaciones.front()->setDuration(5000);
+        this->paralelo.push_front(new QParallelAnimationGroup());
+        this->paralelo.front()->addAnimation(this->animaciones.front());
 
-    this->paralelo.push_front(new QParallelAnimationGroup());
-    this->paralelo.front()->addAnimation(this->animaciones.front());
+        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
+        this->animaciones.front()->setTargetObject(this->BRobot->articulacion1->controlpieza);
+        this->animaciones.front()->setPropertyName("altura");
+        this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
+        this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
+        this->animaciones.front()->setDuration(1000*avance/velocidad);
 
-    this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
-    this->animaciones.front()->setTargetObject(this->BRobot->articulacion1->controlpieza);
-    this->animaciones.front()->setPropertyName("altura");
-    this->animaciones.front()->setStartValue(QVariant::fromValue(0));
-    this->animaciones.front()->setEndValue(QVariant::fromValue(-avance));
-    this->animaciones.front()->setDuration(5000);
+        this->paralelo.front()->addAnimation(this->animaciones.front());
 
-    this->paralelo.front()->addAnimation(this->animaciones.front());
+        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion2->getTransform()));
+        this->animaciones.front()->setTargetObject(this->BRobot->articulacion2->controlpieza);
+        this->animaciones.front()->setPropertyName("altura");
+        this->animaciones.front()->setStartValue(QVariant::fromValue(this->alturaAbsoluta));
+        this->animaciones.front()->setEndValue(QVariant::fromValue(this->alturaAbsoluta + signo*avance));
+        this->animaciones.front()->setDuration(1000*avance/velocidad);
 
-    this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion2->getTransform()));
-    this->animaciones.front()->setTargetObject(this->BRobot->articulacion2->controlpieza);
-    this->animaciones.front()->setPropertyName("altura");
-    this->animaciones.front()->setStartValue(QVariant::fromValue(0));
-    this->animaciones.front()->setEndValue(QVariant::fromValue(-avance));
-    this->animaciones.front()->setDuration(5000);
+        this->paralelo.front()->addAnimation(this->animaciones.front());
 
-    this->paralelo.front()->addAnimation(this->animaciones.front());
+        this->alturaAbsoluta += signo*avance;
 
-    this->secuencia->addAnimation(this->paralelo.front());
+        this->secuencia->addAnimation(this->paralelo.front());
 
+        break;
 
-
-
-    //    this->paralelo.front()->start();
-
-    //    this->BRobot->ActLineal->transform->setTranslation(QVector3D(0, 100, 0));
-
-
-
-    //        this->animacionprueba = new QPropertyAnimation(this->BRobot->ActLineal->getTransform());
-
-//        this->animacionprueba->setTargetObject(this->BRobot->ActLineal->controlpieza);
-//        this->animacionprueba->setPropertyName("altura");
-//        this->animacionprueba->setStartValue(QVariant::fromValue(0));
-//        this->animacionprueba->setEndValue(QVariant::fromValue(-avance));
-
-//        this->animacionprueba->setDuration(5000);
-//        this->animacionprueba->setLoopCount(1);
-
-        //duration en ms. Avance y vel en mm y mm/s respectivamente
-//        animaciones.front()->setDuration(avance/(velocidad*1000));
-//        animaciones.front()->setLoopCount(1);
-
-//        this->animacionprueba->start();
-
-
-
-    // --------------------------------------------
-    // --------------------------------------------
-
-
-
-
-//        this->secuencia = new QSequentialAnimationGroup();
-//        this->secuencia->addAnimation(this->animacionprueba);
-
-//        QPropertyAnimation * test = new QPropertyAnimation(this->BRobot->ActLineal->getTransform());
-//        test->setTargetObject(this->BRobot->ActLineal->controlpieza);
-
-//        test->setPropertyName("altura");
-//        test->setStartValue(QVariant::fromValue(0));
-//        test->setEndValue(QVariant::fromValue(-avance));
-
-//        test->setDuration(5000);
-//        test->setLoopCount(1);
-
-//        this->secuencia->addAnimation(test);
-
-//        this->secuencia->start();
-
-
-//        this->paralelo.push_front(new QParallelAnimationGroup());
-//        paralelo.front()->addAnimation(animaciones.front());
-
-//        secuencia->addAnimation(animaciones.front());
-//        this->startAnimacion();
-
-
-//        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
-//        animaciones.front()->setPropertyName("altura");
-//        animaciones.front()->setPropertyName("altura");
-//        animaciones.front()->setStartValue(QVariant::fromValue(0));
-//        animaciones.front()->setEndValue(QVariant::fromValue(avance));
-//        animaciones.front()->setDuration(avance/(velocidad*1000));
-//        animaciones.front()->setLoopCount(1);
-
-//        paralelo.front()->addAnimation(animaciones.front());
-
-
-//        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion2->getTransform()));
-//        animaciones.front()->setPropertyName("altura");
-//        animaciones.front()->setPropertyName("altura");
-//        animaciones.front()->setStartValue(QVariant::fromValue(0));
-//        animaciones.front()->setEndValue(QVariant::fromValue(avance));
-//        animaciones.front()->setDuration(avance/(velocidad*1000));
-//        animaciones.front()->setLoopCount(1);
-
-//        paralelo.front()->addAnimation(animaciones.front());
-
-
-//        this->secuencia->addAnimation(this->paralelo.front());
-//    }
-
+    }
 }
 
 
 void Controlador::startAnimacion(){
     this->secuencia->start();
+}
+
+bool Controlador::getEstadoBR(){
+    return this->BRobot->getEstado();
 }
 
 

@@ -31,9 +31,6 @@ SOURCES += \
     src/Articulacion.cpp \
     src/BaseRobot.cpp \
     src/Conjunto.cpp \
-    src/EfectorFinal.cpp \
-    src/Eslabon.cpp \
-    src/Programa.cpp \
     src/interfaz.cpp \
     src/control.cpp \
     src/controlador.cpp
@@ -43,9 +40,6 @@ HEADERS += \
     src/Articulacion.h \
     src/BaseRobot.h \
     src/Conjunto.h \
-    src/EfectorFinal.h \
-    src/Eslabon.h \
-    src/Programa.h \
     src/interfaz.h \
     src/control.h \
     src/controlador.h

@@ -62,11 +62,13 @@ interfaz::interfaz(QWidget *parent) :
 
 void interfaz::leerArchivo(){
 
-//    this->archivo.open(":/res/GCode.txt");
 
-
+    // -----------------------------------------------
     // ARREGLAR PATH DEL ARCHIVO
+    // -----------------------------------------------
     this->archivo.open("/home/gino/Dropbox/FING/Programación_Orientada_a_Objetos/TP-Integrador_POO/res/GCode.txt");
+    // -----------------------------------------------
+
 
     std::string linea;
 
@@ -113,8 +115,6 @@ interfaz::~interfaz()
 
     delete this->ui;
 
-
-
 }
 
 void interfaz::on_Encendido_clicked()
@@ -125,7 +125,6 @@ void interfaz::on_Encendido_clicked()
 void interfaz::on_Apagado_clicked()
 {
     this->ControladorRender->setEstadoBR(false);
-//    std::cout << "OFF" << std::endl;
     ui->textEdit->setPlainText("APAGADO");}
 
 void interfaz::on_Comenzar_clicked()

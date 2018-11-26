@@ -44,7 +44,6 @@ Qt3DCore::QTransform * Control::getTarget() const {
 
 float Control::getAltura() const {
     return this->m_altura;
-//    return 400;
 }
 void Control::setAltura(float altura){
     if (!qFuzzyCompare(altura, m_altura)){

@@ -241,7 +241,6 @@ void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avan
         this->ang2Absoluto += signo*avance;
 
 
-
         break;
 
 

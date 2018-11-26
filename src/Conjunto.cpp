@@ -32,11 +32,6 @@ Conjunto::Conjunto(int ID, Qt3DCore::QEntity * rootEntity, QUrl url) : QObject(r
     this->controlpieza = new Control(this->transform);
     this->controlpieza->setTarget(this->transform);
 
-
-
-}
-
-Conjunto::Conjunto(const Conjunto& orig) {
 }
 
 Conjunto::~Conjunto() {

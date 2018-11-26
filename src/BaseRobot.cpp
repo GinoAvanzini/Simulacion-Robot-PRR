@@ -3,8 +3,6 @@
 #include "Conjunto.h"
 #include "ActuadorLineal.h"
 #include "Articulacion.h"
-#include "Eslabon.h"
-#include "EfectorFinal.h"
 
 #include <iostream>
 using std::endl;

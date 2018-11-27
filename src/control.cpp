@@ -10,6 +10,13 @@
 
 QT_BEGIN_NAMESPACE
 
+    /*
+     * Problema con vtable...
+     * Por alguna razón si implemento el constructor acá me lanza ese error.
+     * Si declaro e implemento el constructor en el .h anda todo.
+     * Buscar solucion
+     */
+
 //Control::Control(QObject * parent)
 //    : QObject (parent){}
 //    , m_target(nullptr)
@@ -26,7 +33,6 @@ QT_BEGIN_NAMESPACE
 //  , m_angle(0.0f) {
 
 //}
-
 
 
 
@@ -103,7 +109,6 @@ void Control::setAngle3(float angle3){
 }
 
 
-
 void Control::updateAngle(){
 
     this->m_matrix.rotate(this->m_angle - this->previous_angle, QVector3D(0.0f, 1.0f, 0.0f));
@@ -123,13 +128,9 @@ void Control::updateAngle2(){
     //Angulo absoluto. Se usa en updateAngle3
     this->artic2Angle += (this->m_angle2 - this->previous_angle2);
 
-
-
 }
 
 void Control::updateAngle3(){
-
-
 
     this->m_matrix.translate(this->rotationAxis);
     this->m_matrix.rotate(-this->artic2Angle, QVector3D(0, 1, 0));
@@ -144,12 +145,7 @@ void Control::updateAngle3(){
 
     this->m_target->setMatrix(this->m_matrix);
 
-
 }
-
-
-
-
 
 
 void Control::updateAltura(){
@@ -167,7 +163,6 @@ void Control::setRotationAxis(QVector3D eje){
 void Control::setArtic2Angle(float angle){
     this->artic2Angle = angle;
 }
-
 
 Control::~Control(){
 

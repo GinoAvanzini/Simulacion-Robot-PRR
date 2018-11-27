@@ -46,7 +46,6 @@ float ActuadorLineal::getVelLine_min() const{
     return this->veline_min;
 }
 
-
 int ActuadorLineal::getDistancia_max() const {
     return distancia_max;
 }

@@ -16,7 +16,9 @@ interfaz::interfaz(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Hacer resize a maximum me hace crashear el programa
 //    this->resize(this->maximumWidth(), this->maximumHeight());
+    this->resize(1400, 800);
 
     this->view = new Qt3DExtras::Qt3DWindow;
     this->container = QWidget::createWindowContainer(this->view);
@@ -144,6 +146,8 @@ void interfaz::on_cargarArchivo_clicked()
          * LEER ARCHIVO
          */
         this->leerArchivo();
+        this->estadoArchivo = true;
+        ui->textEdit->setPlainText("Archivo Cargado");
 
     } else {
 
@@ -153,7 +157,13 @@ void interfaz::on_cargarArchivo_clicked()
 }
 void interfaz::on_Comenzar_clicked()
 {
-    this->ControladorRender->startAnimacion();
+    if (this->ControladorRender->getEstadoBR() && this->estadoArchivo){
+        this->ControladorRender->startAnimacion();
+    } else if (!this->ControladorRender->getEstadoBR()){
+        ui->textEdit->setPlainText("Encienda el Robot\n");
+    } else if (!this->estadoArchivo) {
+        ui->textEdit->setPlainText("Cargue el archivo\n");
+    }
 }
 
 void interfaz::on_Descripcion_clicked()

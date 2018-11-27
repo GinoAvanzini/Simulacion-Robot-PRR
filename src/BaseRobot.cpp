@@ -5,13 +5,13 @@
 #include "Articulacion.h"
 
 #include <iostream>
+
 using std::endl;
 
 
 void BaseRobot::inicio(Qt3DCore::QEntity * rootEntity){
 
     //Instancia las articulaciones y el actuador lineal
-
     {
         QUrl path = QStringLiteral("qrc:/res/actuador_lineal.obj");
         this->ActLineal = new ActuadorLineal(10, rootEntity, path);
@@ -29,19 +29,12 @@ void BaseRobot::inicio(Qt3DCore::QEntity * rootEntity){
 
     this->EfectorF = new EfectorFinal(50);
 
-
-
-//    this->articulacion2->transform->rotateAround(QVector3D(0, 0, 0), 45, QVector3D(0, 10, 0));
-
-
-
 }
 
 BaseRobot::BaseRobot(int ID, bool t, string ip) : Conjunto(ID) {
+
     this->setEstado(t);
     this->setIp_data(ip);
-
-    //Llamar a otra función para la interfaz por línea de comandos
 
 }
 

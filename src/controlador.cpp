@@ -179,6 +179,25 @@ void Controlador::realizarHoming(){
         this->agregarAnimacion(10, true, 50, -this->alturaAbsoluta);
     }
 
+
+    /* Normaliza el ángulo entre (-360, 360). También habría que implementarlo
+     * al hacer el envío de los ángulos para la transformaciones si es que
+     * no se limita el ángulo hasta el cual puede rotar el brazo
+     */
+    if (this->ang1Absoluto > 360 || this->ang1Absoluto < -360){
+        this->ang1Absoluto = this->ang1Absoluto % 360;
+    }
+    // Optimiza el ángulo de regreso para homing
+    if (this->ang1Absoluto < -180) {
+        this->ang1Absoluto += 360;
+    } else if (this->ang1Absoluto > 180) {
+        this->ang1Absoluto -= 360;
+    }
+    /* No debería ser necesario hacerlo para el segundo ángulo ya que no está
+     * pensado que dé una vuelta completa sobre ese eje. Limitación mecánica
+     */
+
+
     if (this->ang1Absoluto >= 0) {
         this->agregarAnimacion(11, false, 75, this->ang1Absoluto);
     } else {
@@ -190,7 +209,6 @@ void Controlador::realizarHoming(){
     } else {
         this->agregarAnimacion(12, true, 90, -this->ang2Absoluto);
     }
-
 }
 
 

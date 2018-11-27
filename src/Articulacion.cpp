@@ -8,26 +8,12 @@ Articulacion::Articulacion(int ID) : Conjunto (ID){
 
 }
 
-
-//BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url);
-
 Articulacion::Articulacion(int ID, Qt3DCore::QEntity * rootEntity, QUrl url)
     : Conjunto (ID, rootEntity, url){
 
     this->setBasicSettings(ID);
 
 }
-
-//BaseRobot::BaseRobot(int ID, bool t, string ip, Qt3DCore::QEntity * rootEntity, QUrl url)
-//    : Conjunto(ID, rootEntity, url)
-//{
-
-//    this->setEstado(t);
-//    this->setIp_data(ip);
-
-//}
-
-
 
 void Articulacion::setBasicSettings(int ID){
     this->setId(ID);

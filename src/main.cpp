@@ -1,17 +1,11 @@
 
 #include "BaseRobot.h"
 
-#include <iostream>
-
 #include <QApplication>
 
 #include <Qt3DCore/QEntity>
 
 #include <src/interfaz.h>
-
-using std::cin;
-using std::cout;
-using std::endl;
 
 
 int main(int argc, char** argv) {
@@ -22,9 +16,11 @@ int main(int argc, char** argv) {
     window->setWindowTitle("Integrador POO");
     window->show();
 
+
     app.exec();
 
     delete window;
 
     return 0;
+
 }

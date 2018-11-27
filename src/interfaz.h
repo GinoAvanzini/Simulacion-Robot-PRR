@@ -54,6 +54,8 @@ private slots:
 
 private:
 
+    bool estadoArchivo = false;
+
     Ui::interfaz *ui;
 
     Qt3DExtras::Qt3DWindow * view;

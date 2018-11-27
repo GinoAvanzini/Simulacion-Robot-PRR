@@ -50,6 +50,8 @@ private slots:
 
     void on_Descripcion_clicked();
 
+    void on_cargarArchivo_clicked();
+
 private:
 
     Ui::interfaz *ui;

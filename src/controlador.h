@@ -27,6 +27,8 @@ public:
     void agregarAnimacion(int ID, int ciclos);
     void startAnimacion();
 
+    void realizarHoming();
+
     bool getEstadoBR();
     void setEstadoBR(bool estado);
 

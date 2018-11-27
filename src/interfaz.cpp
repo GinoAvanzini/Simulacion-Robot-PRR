@@ -82,6 +82,8 @@ void interfaz::leerArchivo(){
 
     }
 
+    this->archivo.close();
+
 
 }
 
@@ -89,7 +91,9 @@ void interfaz::setCamera(){
 
     this->cameraEntity = this->view->camera();
     this->cameraEntity->lens()->setPerspectiveProjection(75.0f, 16.0f/9.0f, 0.1f, 1000.0f);
-    this->cameraEntity->setPosition(QVector3D(10, 50, 80.0f));
+    this->cameraEntity->setPosition(QVector3D(-15, 65, 85.0f));
+//  this->cameraEntity->setPosition(QVector3D(10, 50, 80.0f));
+//        this->cameraEntity->setPosition(QVector3D(0, 200.0f, 0));
     this->cameraEntity->setViewCenter(QVector3D(0, 0, 0));
     this->cameraEntity->setUpVector(QVector3D(0, 1, 0));
 
@@ -130,7 +134,9 @@ void interfaz::on_Apagado_clicked()
     ui->textEdit->setPlainText("APAGADO");
 }
 
-void interfaz::on_Comenzar_clicked()
+
+
+void interfaz::on_cargarArchivo_clicked()
 {
     if (this->ControladorRender->getEstadoBR()){
 
@@ -144,6 +150,10 @@ void interfaz::on_Comenzar_clicked()
         ui->textEdit->setPlainText("Encienda el Robot\n");
 
     }
+}
+void interfaz::on_Comenzar_clicked()
+{
+    this->ControladorRender->startAnimacion();
 }
 
 void interfaz::on_Descripcion_clicked()
@@ -175,6 +185,7 @@ void interfaz::on_SALIR_clicked()
 {
     this->~interfaz();
 }
+
 
 
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>377</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,9 +49,16 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="cargarArchivo">
+       <property name="text">
+        <string>Cargar Archivo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="Comenzar">
        <property name="text">
-        <string>Comenzar</string>
+        <string>Comenzar Animación</string>
        </property>
       </widget>
      </item>

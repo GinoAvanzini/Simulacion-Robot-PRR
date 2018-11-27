@@ -64,30 +64,31 @@ void Controlador::interprete(){
             if (aux.front() == '1'){ //actuador lineal
                 aux.erase(0, 1);
                 ID = 10;
-            } else if (aux.front() == '2'){ //Primera articulacion
+            }
+            else if (aux.front() == '2') { //Primera articulacion
                 aux.erase(0, 1);
                 ID = 11;
-            } else if (aux.front() == '3'){  // Segunda articulacion
+            }
+            else if (aux.front() == '3') {  // Segunda articulacion
                 aux.erase(0, 1);
                 ID = 12;
             }
 
-            //Implementación de homing de altura G50
-            //                else if (aux.front() == '5'){
-            //                aux.erase(0, 2);
-            //                ID = 10;
-            //                sentido = false;
-            //                avance = abs(this->alturaAbsoluta);
-            //                flag = false;
-            //                velocidad = 20;
+            //            Implementación de homing de altura G50
+            else if (aux.front() == '5'){
+                aux.erase(0, 2);
 
-            //            }
+                this->realizarHoming();
+                continue;
+            }
 
             if (aux.front() == '1' && flag){
                 sentido = true;
-            } else if (aux.front() == '2' && flag) {
+            }
+            else if (aux.front() == '2' && flag) {
                 sentido = false;
             }
+
             if (flag) { // Si es G50 no entra acá
                 aux = this->instrucciones.front();
                 this->instrucciones.pop();
@@ -99,21 +100,31 @@ void Controlador::interprete(){
 
             this->agregarAnimacion(ID, sentido, velocidad, avance);
 
-        } else if (aux.front() == 'C') {
-            this->startAnimacion();
-
-        } else if (aux.front() == 'H') {
+        }
+        else if (aux.front() == 'C') {
+            /*
+             * Deprecated part of the code. Used to this->startAnimacion, now
+             * this is done with a button on the interface. Kept for clarity
+             * reasons.
+             */
+            aux.erase(0, 3);
+            continue;
+        }
+        else if (aux.front() == 'H') {
             aux.erase(0, 1);
             if (aux.front() == '1'){
                 aux.erase(0, 1);
                 ID = 1;
-            } else if (aux.front() == '2') {
+            }
+            else if (aux.front() == '2') {
                 aux.erase(0, 1);
                 ID = 2;
-            } else if (aux.front() == '3') {
+            }
+            else if (aux.front() == '3') {
                 aux.erase(0, 1);
                 ID = 3;
-            } else if (aux.front() == '4') {
+            }
+            else if (aux.front() == '4') {
                 aux.erase(0, 1);
                 ID = 4;
             }
@@ -131,6 +142,8 @@ void Controlador::interprete(){
 }
 
 
+
+//Sobrecarga de método para simular actuación del Efector Final
 void Controlador::agregarAnimacion(int ID, int ciclos){
 
     int duracion;
@@ -155,7 +168,28 @@ void Controlador::agregarAnimacion(int ID, int ciclos){
         this->secuencia->addPause(duracion*ciclos);
         break;
     }
+}
 
+
+void Controlador::realizarHoming(){
+
+    if (this->alturaAbsoluta >= 0) {
+        this->agregarAnimacion(10, false, 50, this->alturaAbsoluta);
+    } else {
+        this->agregarAnimacion(10, true, 50, -this->alturaAbsoluta);
+    }
+
+    if (this->ang1Absoluto >= 0) {
+        this->agregarAnimacion(11, false, 75, this->ang1Absoluto);
+    } else {
+        this->agregarAnimacion(11, true, 75, -this->ang1Absoluto);
+    }
+
+    if (this->ang2Absoluto >= 0){
+        this->agregarAnimacion(12, false, 90, this->ang2Absoluto);
+    } else {
+        this->agregarAnimacion(12, true, 90, -this->ang2Absoluto);
+    }
 
 }
 
@@ -237,7 +271,7 @@ void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avan
 
         this->animaciones.front()->setTargetObject((this->BRobot->articulacion2->controlpieza));
 
-        this->animaciones.front()->setPropertyName("angle");
+        this->animaciones.front()->setPropertyName("angle3");
         this->animaciones.front()->setStartValue(QVariant::fromValue(this->ang1Absoluto));
         this->animaciones.front()->setEndValue(QVariant::fromValue(this->ang1Absoluto + signo*avance));
         this->animaciones.front()->setDuration(1000*avance/velocidad);
@@ -249,32 +283,14 @@ void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avan
 
         this->ang1Absoluto += signo*avance;
 
-//        this->rotationAxis = QVector3D(40*cos(this->ang1Absoluto*3.1416/180), 0, 40*sin(this->ang1Absoluto*3.1416/180));
+        //        this->rotationAxis = QVector3D(40*cos(this->ang1Absoluto*3.1416/180), 0, 40*sin(this->ang1Absoluto*3.1416/180));
 
-//        this->BRobot->articulacion2->setRotationAxis(this->rotationAxis);
+        //        this->BRobot->articulacion2->setRotationAxis(this->rotationAxis);
 
 
         break;
 
     case 12:
-
-//        this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion1->getTransform()));
-//        this->paralelo.push_front(new QParallelAnimationGroup());
-
-//        this->animaciones.front()->setTargetObject(this->BRobot->articulacion1->controlpieza);
-
-//        this->animaciones.front()->setPropertyName("angle");
-//        this->animaciones.front()->setStartValue(QVariant::fromValue(this->ang1Absoluto));
-//        this->animaciones.front()->setEndValue(QVariant::fromValue(this->ang1Absoluto + signo*avance));
-//        this->animaciones.front()->setDuration(1000*avance/velocidad);
-
-//        this->paralelo.front()->addAnimation(this->animaciones.front());
-
-
-//        this->secuencia->addAnimation(this->paralelo.front());
-
-//        this->ang1Absoluto += signo*avance;
-
 
 
         this->animaciones.push_front(new QPropertyAnimation(this->BRobot->articulacion2->getTransform()));
@@ -292,6 +308,8 @@ void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avan
         this->secuencia->addAnimation(this->paralelo.front());
 
         this->ang2Absoluto += signo*avance;
+
+        //        this->BRobot->articulacion2->controlpieza->setArtic2Angle(ang2Absoluto);
 
 
         break;

@@ -88,26 +88,31 @@ void Control::setAngle2(float angle2){
     this->updateAngle2();
 }
 
+float Control::getAngle3() const{
+    return this->m_angle3;
+}
+void Control::setAngle3(float angle3){
+    if (!qFuzzyCompare(angle3, this->m_angle3)){
+        this->m_angle3 = angle3;
+        this->updateAngle3();
+        emit angle3Changed();
+    }
+    this->previous_angle3 = m_angle3;
+    this->m_angle3 = angle3;
+    this->updateAngle3();
+}
+
 
 
 void Control::updateAngle(){
 
-//    this->m_target->setTranslation(QVector3D(0, 40, 0));
-//    this->m_target->rotateAround()
-
-//    this->m_target->sett
-
     this->m_matrix.rotate(this->m_angle - this->previous_angle, QVector3D(0.0f, 1.0f, 0.0f));
-
     this->m_target->setMatrix(this->m_matrix);
 
-    //    this->m_target->setTranslation(QVector3D(0, -40, 0));
-//    this->m_target->rotateAround();
 }
 
 void Control::updateAngle2(){
 
-//    this->rotationAxis = QVector3D(40, 0, 0);
     this->m_matrix.translate(this->rotationAxis);
     this->m_matrix.rotate(this->m_angle2 - this->previous_angle2, QVector3D(0.0f, 1.0f, 0.0f));
     this->m_matrix.translate((-1)*this->rotationAxis);
@@ -115,7 +120,34 @@ void Control::updateAngle2(){
     this->m_target->setMatrix(this->m_matrix);
 
 
+    //Angulo absoluto. Se usa en updateAngle3
+    this->artic2Angle += (this->m_angle2 - this->previous_angle2);
+
+
+
 }
+
+void Control::updateAngle3(){
+
+
+
+    this->m_matrix.translate(this->rotationAxis);
+    this->m_matrix.rotate(-this->artic2Angle, QVector3D(0, 1, 0));
+    this->m_matrix.translate((-1)*this->rotationAxis);
+
+    this->m_matrix.rotate(this->m_angle3 - this->previous_angle3, QVector3D(0, 1, 0));
+
+    this->m_matrix.translate(this->rotationAxis);
+    this->m_matrix.rotate(this->artic2Angle, QVector3D(0, 1, 0));
+    this->m_matrix.translate((-1)*this->rotationAxis);
+
+
+    this->m_target->setMatrix(this->m_matrix);
+
+
+}
+
+
 
 
 
@@ -125,15 +157,15 @@ void Control::updateAltura(){
     this->m_matrix.translate(QVector3D(0, this->m_altura - this->previous_altura, 0));
     this->m_target->setMatrix(this->m_matrix);
 
-
-//    this->m_target->setTranslation(QVector3D(0, altura, 0));
-
-//    this->m_target->setMatrix(this->m_matrix.translate(QVector3D(0, altura, 0)));
 }
 
 
 void Control::setRotationAxis(QVector3D eje){
     this->rotationAxis = eje;
+}
+
+void Control::setArtic2Angle(float angle){
+    this->artic2Angle = angle;
 }
 
 

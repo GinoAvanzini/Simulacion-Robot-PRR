@@ -29,8 +29,8 @@ interfaz::interfaz(QWidget *parent) :
     this->container = QWidget::createWindowContainer(this->view);
     ui->horizontalLayout->addWidget(this->container);
 
-    this->container->setMinimumWidth(1050);
-    this->container->setMinimumHeight(1050*9/16);
+    this->container->setMinimumWidth(1550);
+    this->container->setMinimumHeight(1550*9/16);
 
 
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
@@ -192,6 +192,12 @@ void interfaz::on_Descripcion_clicked()
 
     ui->textEdit_2->append("- Articulacion:\n");
     ui->textEdit_2->append("  Articulacion que permite movimiento angular en el plano X-Y\n  Peso: 250");
+
+    ui->textEdit_2->append("\n\nDesarrollado con herramientas Open Source"
+                           " por Gino Hernán Avanzini"
+                           " y Emiliano Martín Cabrino.\n\n"
+                           "Programación Orientada a Objetos. Facultad de Ingeniería. "
+                           "Universidad Nacional de Cuyo.\n\nAño 2018");
 
 
     //    ui->textEdit_2->append();

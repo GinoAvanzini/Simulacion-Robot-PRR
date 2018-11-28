@@ -40,8 +40,6 @@ public:
 private slots:
     void on_Encendido_clicked();
 
-    void on_pushButton_2_clicked();
-
     void on_Apagado_clicked();
 
     void on_Comenzar_clicked();
@@ -52,9 +50,14 @@ private slots:
 
     void on_cargarArchivo_clicked();
 
+    void on_borrarSecuencia_clicked();
+
+    void on_agregarMovimiento_clicked();
+
 private:
 
-    bool estadoArchivo = false;
+    // Variable para saber si el usuario ingresó archivo o instrucción manual
+    bool estadoInput = false;
 
     Ui::interfaz *ui;
 

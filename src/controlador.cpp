@@ -141,36 +141,6 @@ void Controlador::interprete(){
 
 }
 
-
-
-//Sobrecarga de método para simular actuación del Efector Final
-void Controlador::agregarAnimacion(int ID, int ciclos){
-
-    int duracion;
-    switch(ID){
-    case 1:
-        duracion = this->BRobot->EfectorF->getDuracionPintar();
-        this->secuencia->addPause(duracion*ciclos);
-        break;
-
-    case 2:
-        duracion = this->BRobot->EfectorF->getDuracionRotar();
-        this->secuencia->addPause(duracion*ciclos);
-        break;
-
-    case 3:
-        duracion = this->BRobot->EfectorF->getDuracionSoltar();
-        this->secuencia->addPause(duracion*ciclos);
-        break;
-
-    case 4:
-        duracion = this->BRobot->EfectorF->getDuracionSostener();
-        this->secuencia->addPause(duracion*ciclos);
-        break;
-    }
-}
-
-
 void Controlador::realizarHoming(){
 
     if (this->alturaAbsoluta >= 0) {
@@ -211,6 +181,32 @@ void Controlador::realizarHoming(){
     }
 }
 
+//Sobrecarga de método para simular actuación del Efector Final
+void Controlador::agregarAnimacion(int ID, int ciclos){
+
+    int duracion;
+    switch(ID){
+    case 1:
+        duracion = this->BRobot->EfectorF->getDuracionPintar();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+
+    case 2:
+        duracion = this->BRobot->EfectorF->getDuracionRotar();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+
+    case 3:
+        duracion = this->BRobot->EfectorF->getDuracionSoltar();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+
+    case 4:
+        duracion = this->BRobot->EfectorF->getDuracionSostener();
+        this->secuencia->addPause(duracion*ciclos);
+        break;
+    }
+}
 
 void Controlador::agregarAnimacion(int ID, bool sentido, int velocidad, int avance){
 
@@ -341,11 +337,24 @@ void Controlador::startAnimacion(){
     this->secuencia->start();
 }
 
+void Controlador::borrarSecuencia(){
+
+    this->secuencia->clear();
+
+    this->paralelo.clear();
+
+}
+
 bool Controlador::getEstadoBR(){
     return this->BRobot->getEstado();
 }
 void Controlador::setEstadoBR(bool estado){
     this->BRobot->setEstado(estado);
+}
+
+
+int Controlador::getSequenceDuration(){
+    return this->secuencia->duration();
 }
 
 Controlador::~Controlador(){

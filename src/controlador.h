@@ -32,6 +32,10 @@ public:
     bool getEstadoBR();
     void setEstadoBR(bool estado);
 
+    void borrarSecuencia();
+
+    int getSequenceDuration();
+
     BaseRobot * BRobot;
 
 private:

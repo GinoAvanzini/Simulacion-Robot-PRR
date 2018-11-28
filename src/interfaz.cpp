@@ -5,8 +5,13 @@
 #include "controlador.h"
 
 #include <QStringLiteral>
+#include <QString>
+
+#include <QFileDialog>
 
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 
 
@@ -24,11 +29,17 @@ interfaz::interfaz(QWidget *parent) :
     this->container = QWidget::createWindowContainer(this->view);
     ui->horizontalLayout->addWidget(this->container);
 
-    this->container->setMinimumWidth(1100);
-    this->container->setMinimumHeight(1100*9/16);
+    this->container->setMinimumWidth(1050);
+    this->container->setMinimumHeight(1050*9/16);
 
 
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
+
+    ui->spinBox->setMinimum(-500);
+
+    ui->spinBox->setMaximum(500);
+
+    ui->spinBox_2->setMaximum(150);
 
 
     this->rootEntity = new Qt3DCore::QEntity;
@@ -67,25 +78,25 @@ interfaz::interfaz(QWidget *parent) :
 void interfaz::leerArchivo(){
 
 
-    // -----------------------------------------------
-    // ARREGLAR PATH DEL ARCHIVO
-    // -----------------------------------------------
-    this->archivo.open("/home/gino/Dropbox/FING/Programación_Orientada_a_Objetos/TP-Integrador_POO/res/GCode.txt");
-    // -----------------------------------------------
+    QString filename = QFileDialog::getOpenFileName(this,
+                                                tr("Open File"),
+                                                "..",
+                                                "All Files (*.*)"
+                                                );
 
+    QFile file(filename);
 
-    std::string linea;
+    if (file.open(QFile::ReadOnly)){
+        QTextStream in(&file);
+        while(!in.atEnd()){
+            QString line = in.readLine();
 
-    while(getline(this->archivo, linea)){
+            this->ControladorRender->agregarInstruccion(line.toStdString());
 
-        this->ControladorRender->agregarInstruccion(linea);
+        }
 
-        std::cout << linea << std::endl;
-
+        file.close();
     }
-
-    this->archivo.close();
-
 
 }
 
@@ -130,6 +141,7 @@ void interfaz::on_Encendido_clicked()
     this->ControladorRender->setEstadoBR(true);
     ui->textEdit->setPlainText("ENCENDIDO");
 }
+
 void interfaz::on_Apagado_clicked()
 {
     this->ControladorRender->setEstadoBR(false);
@@ -146,7 +158,7 @@ void interfaz::on_cargarArchivo_clicked()
          * LEER ARCHIVO
          */
         this->leerArchivo();
-        this->estadoArchivo = true;
+        this->estadoInput = true;
         ui->textEdit->setPlainText("Archivo Cargado");
 
     } else {
@@ -155,13 +167,14 @@ void interfaz::on_cargarArchivo_clicked()
 
     }
 }
+
 void interfaz::on_Comenzar_clicked()
 {
-    if (this->ControladorRender->getEstadoBR() && this->estadoArchivo){
+    if (this->ControladorRender->getEstadoBR() && this->estadoInput){
         this->ControladorRender->startAnimacion();
     } else if (!this->ControladorRender->getEstadoBR()){
         ui->textEdit->setPlainText("Encienda el Robot\n");
-    } else if (!this->estadoArchivo) {
+    } else if (!this->estadoInput) {
         ui->textEdit->setPlainText("Cargue el archivo\n");
     }
 }
@@ -186,10 +199,6 @@ void interfaz::on_Descripcion_clicked()
 
 }
 
-void interfaz::on_pushButton_2_clicked()
-{
-    return;
-}
 
 void interfaz::on_SALIR_clicked()
 {
@@ -198,8 +207,91 @@ void interfaz::on_SALIR_clicked()
 
 
 
+void interfaz::on_borrarSecuencia_clicked()
+{
+    this->ControladorRender->borrarSecuencia();
+
+    this->ControladorRender->realizarHoming();
+
+    this->ControladorRender->startAnimacion();
+
+
+    ui->textEdit->setPlainText("Para borrar también la secuencia de homing "
+                               "debe presionar el botón de borrar secuencia"
+                               "una vez termina la simulación de la vuelta"
+                               "al origen.\n"
+                               "Secuencia borrada. \n"
+                               "Puede ingresar nuevas instrucciones");
+
+
+    /* ATENCION
+     *
+     * FALTA IMPLEMENTACIÓN!!!
+     *
+     * Para poder borrar la secuencia que hay almacenada y que a la vez se vea
+     * bien la transición hago una borrarSecuencia y un homing. Pero luego hay
+     * que borrar dicho homing. Si ejecuto un borrarSecuencia inmediatamente
+     * vuelve todo al origen abruptamente.
+     *
+     * Una opción sería recurrir a threads. Crear uno que tome el tiempo que
+     * tarda en terminar la animación del homing y recién ahí realizar el
+     * borrado de la secuencia. Mientras tanto, el proceso del programa
+     * principal sigue funcionando normalmente. Probablemente haya problemas
+     * igual.
+     *
+     * -------------------------------------------------------------------------
+     * Otra opción sería tomar la signal de fin de animación y conectarla con
+     * un slot que borre la animación. Este slot se ejecuta si está levantada
+     * una bandera que se levanta en on_borrarSecuencia_clicked. Luego de
+     * borrar la animación en el slot se baja la bandera nuevamente.
+     * -------------------------------------------------------------------------
+     *
+     */
+
+
+}
 
 
 
 
+void interfaz::on_agregarMovimiento_clicked()
+{
 
+    this->estadoInput = true;
+
+    QString actuador;
+
+    int avance;
+
+    actuador.append('G');
+
+    if (ui->comboBox->currentIndex() == 0){
+        actuador.append('1');
+    }
+    else if (ui->comboBox->currentIndex() == 1) {
+        actuador.append('2');
+    }
+    else if (ui->comboBox->currentIndex() == 2) {
+        actuador.append('3');
+    }
+
+    if (ui->spinBox->value() <= 0) {
+        actuador.append('2');
+
+        avance = -ui->spinBox->value();
+    } else {
+        actuador.append('1');
+        avance = ui->spinBox->value();
+    }
+
+    this->ControladorRender->agregarInstruccion(actuador.toStdString());
+
+    this->ControladorRender->agregarInstruccion(std::to_string(ui->spinBox_2->value()));
+
+    this->ControladorRender->agregarInstruccion(std::to_string(avance));
+
+    this->ControladorRender->agregarInstruccion("C00");
+
+
+
+}

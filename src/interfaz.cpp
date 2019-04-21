@@ -24,13 +24,14 @@ interfaz::interfaz(QWidget *parent) :
     // Hacer resize a maximum me hace crashear el programa
 //    this->resize(this->maximumWidth(), this->maximumHeight());
     this->resize(1400, 800);
+//    this->adjustSize();
 
     this->view = new Qt3DExtras::Qt3DWindow;
     this->container = QWidget::createWindowContainer(this->view);
     ui->horizontalLayout->addWidget(this->container);
 
-    this->container->setMinimumWidth(1550);
-    this->container->setMinimumHeight(1550*9/16);
+    this->container->setMinimumWidth(1050);
+    this->container->setMinimumHeight(1050*9/16);
 
 
     ui->verticalLayout->setAlignment(Qt::AlignCenter);
@@ -239,7 +240,7 @@ void interfaz::on_borrarSecuencia_clicked()
      * que borrar dicho homing. Si ejecuto un borrarSecuencia inmediatamente
      * vuelve todo al origen abruptamente.
      *
-     * Una opción sería recurrir a threads. Crear uno que tome el tiempo que
+     * [no muy bien] Una opción sería recurrir a threads. Crear uno que tome el tiempo que
      * tarda en terminar la animación del homing y recién ahí realizar el
      * borrado de la secuencia. Mientras tanto, el proceso del programa
      * principal sigue funcionando normalmente. Probablemente haya problemas
